@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.c2w</groupId>
+    <artifactId>c2w-cpp-foundation</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>C2WMySQLLogger</artifactId>
+  <name>C2W MySQL Logger Library</name>
+  <packaging>nar</packaging>
+
+  <dependencies>
+  	<!--dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>core</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+  	</dependency>
+    <dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>chrono</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>config</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>lexical-cast</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>range</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>system</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.boost</groupId>
+        <artifactId>thread</artifactId>
+        <version>${boost.version}</version>
+        <type>nar</type>
+    </dependency-->
+    <dependency>
+        <groupId>org.c2w</groupId>
+        <artifactId>core-cpp</artifactId>
+        <version>${c2w.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.c2w</groupId>
+        <artifactId>mysql-connector-cpp</artifactId>
+        <version>1.1.0</version>
+        <type>nar</type>
+    </dependency>
+  </dependencies>
+
+    <build>
+      <plugins>
+          <plugin>
+              <groupId>com.github.maven-nar</groupId>
+              <artifactId>nar-maven-plugin</artifactId>
+              <extensions>true</extensions>
+              <configuration>
+                <libraries>
+                    <library> 
+                        <type>shared</type>
+                    </library>
+                </libraries>
+            </configuration>
+          </plugin>
+      </plugins>
+  </build>
+
+</project>

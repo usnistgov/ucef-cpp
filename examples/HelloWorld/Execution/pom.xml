@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.c2w</groupId>
+    <artifactId>c2w-helloworld-cpp</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>example-executions</artifactId>
+  <name>C++ example executor</name>
+  <packaging>pom</packaging>
+
+  <dependencies>
+    <dependency>
+        <groupId>org.c2w</groupId>
+        <artifactId>helloworld_source2-cpp</artifactId>
+        <version>${c2w.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.c2w</groupId>
+        <artifactId>helloworld_sink2-cpp</artifactId>
+        <version>${c2w.version}</version>
+        <type>nar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.c2w</groupId>
+        <artifactId>helloworld_ping_counter2-cpp</artifactId>
+        <version>${c2w.version}</version>
+        <type>nar</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+        <plugin>
+        <groupId>com.github.maven-nar</groupId>
+        <artifactId>nar-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <classifiers>
+            <classifier>${nar.aol}</classifier>
+          </classifiers>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>nar-download</goal>
+              <goal>nar-download-dependencies</goal>
+              <goal>nar-unpack</goal>
+              <goal>nar-unpack-dependencies</goal>
+              <goal>nar-assembly</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <finalName>bin</finalName>
+            <descriptors>
+              <descriptor>src/main/assembly/executionAssembly.xml</descriptor>
+            </descriptors>
+          </configuration>
+          <executions>
+              <execution>
+                <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                <phase>package</phase> <!-- bind to the packaging phase -->
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+        </executions>
+        </plugin>
+    </plugins>
+  </build>
+
+ </project>
