@@ -12,48 +12,6 @@
   <packaging>nar</packaging>
 
   <dependencies>
-  	<!--dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>core</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-  	</dependency>
-    <dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>chrono</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-    </dependency>
-    <dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>config</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-    </dependency>
-    <dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>lexical-cast</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-    </dependency>
-    <dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>range</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-    </dependency>
-    <dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>system</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-    </dependency>
-    <dependency>
-        <groupId>org.boost</groupId>
-        <artifactId>thread</artifactId>
-        <version>${boost.version}</version>
-        <type>nar</type>
-    </dependency-->
     <dependency>
         <groupId>org.c2w</groupId>
         <artifactId>core-cpp</artifactId>
@@ -80,6 +38,16 @@
                         <type>shared</type>
                     </library>
                 </libraries>
+                <linker>
+                    <libs>
+                      <lib>
+                        <name>mysqlcppconn</name>
+                        <type>shared</type>
+                        <directory>${build.MYSQL_LIB_DIR}</directory>
+                      </lib>
+                    </libs>
+                    
+                </linker>
             </configuration>
           </plugin>
       </plugins>

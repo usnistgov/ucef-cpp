@@ -3,11 +3,11 @@
 
   <parent>
     <groupId>org.c2w</groupId>
-    <artifactId>c2w-helloworld-cpp</artifactId>
+    <artifactId>c2w-HelloWorld-cpp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>helloworld_base-cpp</artifactId>
+  <artifactId>HelloWorld-base-cpp</artifactId>
   <name>C++ Hello World example base</name>
   <packaging>nar</packaging>
 

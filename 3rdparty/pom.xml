@@ -64,6 +64,12 @@
                     <family>windows</family>
                 </os>
             </activation>
+            <properties>
+              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
+              <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
+              <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
+              <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -89,6 +95,43 @@
                     <family>linux</family>
                 </os>
             </activation>
+            <properties>
+              <build.RTI_LIB_DIR>${env.RTI_HOME}/lib/gcc4</build.RTI_LIB_DIR>
+              <build.BOOST_INC_DIR>/usr/include/boost</build.BOOST_INC_DIR>
+              <build.BOOST_LIB_DIR>/usr/lib/x86_64-linux-gnu</build.BOOST_LIB_DIR>
+              <build.MYSQL_LIB_DIR>/usr/lib/</build.MYSQL_LIB_DIR>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <cpp>
+                                <options combine.children="append">
+                                    <option>-pthread</option>
+                                </options>
+                            </cpp>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>mac-common</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
+              <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
+              <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
+              <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
+            </properties>
             <build>
                 <plugins>
                     <plugin>

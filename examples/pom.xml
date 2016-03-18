@@ -13,6 +13,7 @@
 
     <properties>
         <c2w.version>0.0.1-SNAPSHOT</c2w.version>
+        <model.version>0.0.2-SNAPSHOT</model.version>
         <boost.version>1.57.0+nar.10</boost.version>
         <nar-plugin.version>3.3.0</nar-plugin.version>
         <compiler-name>g++</compiler-name>

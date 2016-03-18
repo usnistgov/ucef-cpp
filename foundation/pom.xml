@@ -54,35 +54,34 @@
                           <define>RTI_USES_STD_FSTREAM</define>
                         </defines>
                         <systemIncludePaths>
-                          <systemIncludePath>${env.BOOST_LIB_DIR}/include</systemIncludePath>
+                          <systemIncludePath>${build.BOOST_INC_DIR}</systemIncludePath>
                         </systemIncludePaths>
                     </cpp>
                     <linker>
                         <name>${linker-name}</name>
-                        <incremental>true</incremental>
-                        <libs>
+                        <incremental>false</incremental>
+                        <libs combine.children="append">
                           <lib>
-                            <name>portico</name>
+                            <name>RTI-NG64</name>
                             <type>shared</type>
-                            <directory>${env.RTI_LIB_DIR}</directory>
+                            <directory>${build.RTI_LIB_DIR}</directory>
+                          </lib>
+                          <lib>
+                            <name>FedTime64</name>
+                            <type>shared</type>
+                            <directory>${build.RTI_LIB_DIR}</directory>
                           </lib>
                           <lib>
                             <name>boost_thread</name>
                             <type>shared</type>
-                            <directory>${env.BOOST_LIB_DIR}/lib</directory>
+                            <directory>${build.BOOST_LIB_DIR}</directory>
                           </lib>
                           <lib>
                             <name>boost_system</name>
                             <type>shared</type>
-                            <directory>${env.BOOST_LIB_DIR}/lib</directory>
-                          </lib>
-                          <lib>
-                            <name>mysqlcppconn</name>
-                            <type>shared</type>
-                            <directory>${env.MYSQL_LIB_DIR}/lib</directory>
+                            <directory>${build.BOOST_LIB_DIR}</directory>
                           </lib>
                         </libs>
-                        
                     </linker>
                 </configuration>
             </plugin>
@@ -98,6 +97,12 @@
                     <family>windows</family>
                 </os>
             </activation>
+            <properties>
+              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
+              <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
+              <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
+              <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -123,6 +128,43 @@
                     <family>linux</family>
                 </os>
             </activation>
+            <properties>
+              <build.RTI_LIB_DIR>${env.RTI_HOME}/lib/gcc4</build.RTI_LIB_DIR>
+              <build.BOOST_INC_DIR>/usr/include/boost</build.BOOST_INC_DIR>
+              <build.BOOST_LIB_DIR>/usr/lib/x86_64-linux-gnu</build.BOOST_LIB_DIR>
+              <build.MYSQL_LIB_DIR>/usr/lib/</build.MYSQL_LIB_DIR>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.maven-nar</groupId>
+                        <artifactId>nar-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <cpp>
+                                <options combine.children="append">
+                                    <option>-pthread</option>
+                                </options>
+                            </cpp>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>mac-common</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
+              <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
+              <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
+              <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
