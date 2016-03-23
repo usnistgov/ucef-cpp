@@ -57,6 +57,8 @@ class SynchronizedFederate : public NullFederateAmbassador {
 
 public:
 	static const std::string FEDERATION_MANAGER_NAME;
+	enum TimeAdvanceMode { SF_TIME_ADVANCE_REQUEST, SF_NEXT_EVENT_REQUEST, SF_TIME_ADVANCE_REQUEST_AVAILABLE, SF_NEXT_EVENT_REQUEST_AVAILABLE };
+
 
 private:
     RTI::RTIambassador *_rti;
@@ -82,10 +84,13 @@ private:
 
 	double _currentTime;
 	double _lookahead;
+	TimeAdvanceMode _timeAdvanceMode;
 
 public:
 	void setLookahead( double lookahead ) { _lookahead = lookahead; }
 	double getLookahead() { return _lookahead; }
+	void setTimeAdvanceMode ( TimeAdvanceMode timeAdvanceMode ) { _timeAdvanceMode = timeAdvanceMode; }
+	TimeAdvanceMode getTimeAdvanceMode() { return _timeAdvanceMode; }
 
 private:
 	bool getTimeAdvanceNotGranted( void ) { return _timeAdvanceNotGranted; }
@@ -102,6 +107,8 @@ protected:
 		      _lockFileName += "/";
 		  }
 		  _lockFileName += "__lock__";
+
+		  _timeAdvanceMode = SF_TIME_ADVANCE_REQUEST;
 	}
 
 	virtual ~SynchronizedFederate()
@@ -248,7 +255,23 @@ private:
 	class InteractionRootSPComparator {
 	public:
 		bool operator()( const InteractionRoot::SP &interactionRootSP1, const InteractionRoot::SP &interactionRootSP2 ) {
-			return interactionRootSP1->getTime() < interactionRootSP2->getTime();
+			if ( interactionRootSP1->getTime() < interactionRootSP2->getTime() ) {
+			    return true;
+			} else if ( interactionRootSP1->getTime() > interactionRootSP2->getTime() ) {
+			    return false;
+			} else {
+			    boost::shared_ptr< C2WInteractionRoot > c2wInteractionRootSP1(   boost::static_pointer_cast< C2WInteractionRoot >( interactionRootSP1 )  );
+			    boost::shared_ptr< C2WInteractionRoot > c2wInteractionRootSP2(   boost::static_pointer_cast< C2WInteractionRoot >( interactionRootSP2 )  );
+			    if ( c2wInteractionRootSP1 != 0 && c2wInteractionRootSP2 != 0 ) {
+			        if ( c2wInteractionRootSP1->get_actualLogicalGenerationTime() < c2wInteractionRootSP2->get_actualLogicalGenerationTime() ) {
+			            return true;
+			        } else if ( c2wInteractionRootSP2->get_actualLogicalGenerationTime() < c2wInteractionRootSP1->get_actualLogicalGenerationTime() ) {
+			            return false;
+			        }
+			    }
+			}
+
+			return false;
 		}
 	};
 
@@ -272,6 +295,20 @@ public:
 	    return interactionRootSP;
 	}
 
+	bool unmatchingFedFilterProvided( InteractionRoot::SP interactionRootSP ) {
+	    boost::shared_ptr< C2WInteractionRoot > c2wInteractionRootSP(   boost::static_pointer_cast< C2WInteractionRoot >( interactionRootSP )  );
+	    std::string fedFilter = c2wInteractionRootSP->get_federateFilter();
+	    if( fedFilter.length() > 0 ) {
+            boost::algorithm::trim(fedFilter);
+            if( ( fedFilter.length() > 0 ) && ( fedFilter.compare( getFederateId() ) != 0 ) ) {
+                // std::cout << "Filtering due to fed filter: " << fedFilter << std::endl;
+                // std::cout << "Filtered interaction was: " << interactionRootSP << std::endl;
+                return true;
+            }
+	    }
+	    return false;
+	}
+
 	virtual void receiveInteraction(
 	 RTI::InteractionClassHandle theInteraction,
 	 const RTI::ParameterHandleValuePairSet& theParameters,
@@ -282,11 +319,13 @@ public:
 	 throw ( RTI::InteractionClassNotKnown, RTI::InteractionParameterNotKnown, RTI::InvalidFederationTime, RTI::FederateInternalError) {
 		if ( getMoreATRs() ) {
 			InteractionRoot::SP interactionRootSP = InteractionRoot::create_interaction( theInteraction, theParameters, theTime );
-			RTIfedTime rtitime(theTime);
-			double ltime = rtitime.getTime();
-			handleIfSimEnd(interactionRootSP, ltime);
-			addInteraction( interactionRootSP );
-			interactionRootSP->createLog( ltime, false );
+			if ( !unmatchingFedFilterProvided(interactionRootSP) ) {
+                RTIfedTime rtitime(theTime);
+                double ltime = rtitime.getTime();
+                handleIfSimEnd(interactionRootSP, ltime);
+                addInteraction( interactionRootSP );
+                interactionRootSP->createLog( ltime, false );
+			}
 		}
 	}
 
@@ -298,21 +337,23 @@ public:
 	 throw ( RTI::InteractionClassNotKnown, RTI::InteractionParameterNotKnown, RTI::FederateInternalError) {
 		if ( getMoreATRs() ) {
 			InteractionRoot::SP interactionRootSP = InteractionRoot::create_interaction( theInteraction, theParameters );
+            if ( !unmatchingFedFilterProvided(interactionRootSP) ) {
 
-	        // Himanshu: We normally use only TSO updates, so this shouldn't be
-	        // called, but due to an RTI bug, it seemingly is getting called. So,
-	        // for now, use the federate's current time or LBTS whichever is greater
-	        // as the timestamp
-	        double assumedTimestamp = 0;
-	        if( getLBTS() >= getCurrentTime() ) {
-	        	assumedTimestamp = getLBTS();
-	        } else {
-	        	assumedTimestamp = getCurrentTime();
-	        }
-			RTIfedTime rtitime( assumedTimestamp );
-			handleIfSimEnd(interactionRootSP, assumedTimestamp);
-			addInteraction( interactionRootSP );
-			interactionRootSP->createLog( assumedTimestamp, false );
+                // Himanshu: We normally use only TSO updates, so this shouldn't be
+                // called, but due to an RTI bug, it seemingly is getting called. So,
+                // for now, use the federate's current time or LBTS whichever is greater
+                // as the timestamp
+                double assumedTimestamp = 0;
+                if( getLBTS() >= getCurrentTime() ) {
+                    assumedTimestamp = getLBTS();
+                } else {
+                    assumedTimestamp = getCurrentTime();
+                }
+                RTIfedTime rtitime( assumedTimestamp );
+                handleIfSimEnd(interactionRootSP, assumedTimestamp);
+                addInteraction( interactionRootSP );
+                interactionRootSP->createLog( assumedTimestamp, false );
+            }
 		}
 	}
 

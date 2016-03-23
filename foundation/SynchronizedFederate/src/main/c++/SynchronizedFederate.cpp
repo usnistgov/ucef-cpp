@@ -387,14 +387,25 @@ void SynchronizedFederate::run( void ) {
 
 void SynchronizedFederate::advanceTime( double time ) {
 
-	if ( time <= _currentTime ) return;
+	if ( getTimeAdvanceMode() != SF_TIME_ADVANCE_REQUEST_AVAILABLE && getTimeAdvanceMode() != SF_NEXT_EVENT_REQUEST_AVAILABLE &&  time <= _currentTime ) return;
 
 	setTimeAdvanceNotGranted( true );
 
 	bool tarNotCalled = true;
 	while( tarNotCalled ) {
 		try {
-			getRTI()->timeAdvanceRequest(  RTIfedTime( time )  );
+		    if ( getTimeAdvanceMode() == SF_TIME_ADVANCE_REQUEST ) {
+		        getRTI()->timeAdvanceRequest(  RTIfedTime( time )  );
+		    }
+		    else if ( getTimeAdvanceMode() == SF_TIME_ADVANCE_REQUEST_AVAILABLE ) {
+                getRTI()->timeAdvanceRequestAvailable(  RTIfedTime( time )  );
+		    }
+		    else if ( getTimeAdvanceMode() == SF_NEXT_EVENT_REQUEST ) {
+                getRTI()->nextEventRequest(  RTIfedTime( time )  );
+		    }
+		    else if ( getTimeAdvanceMode() == SF_NEXT_EVENT_REQUEST_AVAILABLE ) {
+                getRTI()->nextEventRequestAvailable(  RTIfedTime( time )  );
+		    }
 			tarNotCalled = false;
 		} catch ( RTI::FederationTimeAlreadyPassed &f ) {
 			std::cerr << "Time already passed detected." << std::endl;
