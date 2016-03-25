@@ -12,7 +12,8 @@
       <module>rti-base</module>
       <module>C2WConsoleLogger</module>
       <module>C2WMySQLLogger</module>
-      <module>SynchronizedFederate</module>    
+      <module>SynchronizedFederate</module> 
+      <module>OmnetFederate</module>    
     </modules>  
 
     <properties>

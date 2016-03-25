@@ -1,0 +1,3 @@
+package OmnetFederate;
+
+@license(LGPL);
