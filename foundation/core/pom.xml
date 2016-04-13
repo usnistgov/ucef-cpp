@@ -11,18 +11,9 @@
   <name>C++ Core Include library</name>
   <packaging>nar</packaging>
 
-    <properties>
-        <nar.includefilesonly>true</nar.includefilesonly>
-    </properties>
-
-  <dependencies>
-    <dependency>
-        <groupId>org.c2w</groupId>
-        <artifactId>portico-hla13-cpp</artifactId>
-        <version>1.0.0</version>
-        <type>nar</type>
-    </dependency>
-  </dependencies>
+  <properties>
+      <nar.includefilesonly>true</nar.includefilesonly>
+  </properties>
 
   <build>
     <plugins>
