@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.c2w</groupId>
   <artifactId>c2w-cpp-examples</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0</version>
   <packaging>pom</packaging>
   <name>C2 Windtunnel C++ Examples</name>
   <description>Examples of C2 Windtunnel C++ RTI and Federates</description>
@@ -12,8 +12,8 @@
     </modules>  
 
     <properties>
-        <c2w.version>0.0.1-SNAPSHOT</c2w.version>
-        <model.version>0.0.1-SNAPSHOT</model.version>
+        <c2w.version>0.1.0</c2w.version>
+        <model.version>0.1.0</model.version>
         <boost.version>1.57.0+nar.10</boost.version>
         <nar-plugin.version>3.3.0</nar-plugin.version>
         <compiler-name>g++</compiler-name>
