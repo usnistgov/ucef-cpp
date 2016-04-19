@@ -62,7 +62,7 @@
   
   <scm>
       <connection>scm:git:https://git.vulcan.isis.vanderbilt.edu/projects/c2wtng/c2wtng-cpp</connection>
-      <developerConnection>https://git.vulcan.isis.vanderbilt.edu/projects/c2wtng/c2wtng-cpp</developerConnection>
+      <developerConnection>scm:git:https://git.vulcan.isis.vanderbilt.edu/projects/c2wtng/c2wtng-cpp</developerConnection>
       <url>https://vulcan.isis.vanderbilt.edu/projects/c2wtng/c2wtng-cpp/folder/master/</url>
   </scm>
   
