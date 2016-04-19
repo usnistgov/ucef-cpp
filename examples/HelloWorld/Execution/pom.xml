@@ -58,11 +58,18 @@
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>2.6</version>
+          <dependencies>
+            <dependency><!-- The depenency for CPP execution assembly script-->
+              <groupId>org.c2w</groupId>
+              <artifactId>ExecutionAssembler</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+          </dependencies>
           <configuration>
             <finalName>bin</finalName>
-            <descriptors>
-              <descriptor>src/main/assembly/executionAssembly.xml</descriptor>
-            </descriptors>
+            <descriptorRefs>
+              <descriptorRef>executionAssembly</descriptorRef>
+            </descriptorRefs>
           </configuration>
           <executions>
               <execution>
@@ -74,7 +81,45 @@
               </execution>
         </executions>
         </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <configuration>
+              <workingDirectory>${project.basedir}/target/bin-exec</workingDirectory>
+              <executable>./HelloWorld-${federate.name}-cpp</executable>
+              <arguments>
+                  <argument>HelloWorld</argument>
+                  <argument>${federate.name}</argument>
+                  <argument>${federate.loglevel}</argument>
+                </arguments>
+            </configuration>
+          </plugin>
     </plugins>
   </build>
+
+  <profiles>
+        <profile>
+            <id>Source2</id>
+            <properties>
+                <federate.name>Source2</federate.name>
+                <federate.loglevel>NORMAL</federate.loglevel>
+            </properties>
+        </profile>
+        <profile>
+            <id>Sink2</id>
+            <properties>
+                <federate.name>Sink2</federate.name>
+                <federate.loglevel>NORMAL</federate.loglevel>
+            </properties>
+        </profile>
+        <profile>
+            <id>PingCounter2</id>
+            <properties>
+                <federate.name>PingCounter2</federate.name>
+                <federate.loglevel>NORMAL</federate.loglevel>
+            </properties>
+        </profile>     
+   </profiles>        
 
  </project>

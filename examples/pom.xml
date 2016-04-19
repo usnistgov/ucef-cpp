@@ -13,12 +13,13 @@
 
     <properties>
         <c2w.version>0.0.1-SNAPSHOT</c2w.version>
-        <model.version>0.0.2-SNAPSHOT</model.version>
+        <model.version>0.0.1-SNAPSHOT</model.version>
         <boost.version>1.57.0+nar.10</boost.version>
         <nar-plugin.version>3.3.0</nar-plugin.version>
         <compiler-name>g++</compiler-name>
         <linker-name>g++</linker-name>
     </properties>
+
 
    <repositories>
      <repository>
@@ -45,6 +46,19 @@
       <url>http://c2w-cdi.isis.vanderbilt.edu:8088/repository/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>archiva.internal</id>
+      <name>Internal Release Repository</name>
+      <url>http://c2w-cdi.isis.vanderbilt.edu:8088/repository/internal/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>archiva.snapshots</id>
+      <name>Internal Snapshot Repository</name>
+      <url>http://c2w-cdi.isis.vanderbilt.edu:8088/repository/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
   
   <scm>
       <connection>scm:git:https://git.vulcan.isis.vanderbilt.edu/projects/c2wtng/c2wtng-cpp</connection>

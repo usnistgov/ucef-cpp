@@ -4,7 +4,7 @@
 #include "AddRouteToRoutingTable.hpp"
 #include "StartSnifferAttack.hpp"
 #include "AttacksNotYetImplemented.hpp"
-#include "StopDNSPoisiningAttack.hpp"
+#include "StopDNSPoisoningAttack.hpp"
 #include "CeaseReplayAttack.hpp"
 #include "StopDelayNodeAttack.hpp"
 #include "StopSnifferAttack.hpp"

@@ -1,28 +1,19 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>org.c2w</groupId>
     <artifactId>c2w-HelloWorld-cpp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-
-  <artifactId>c2w-HelloWorld-impl-cpp</artifactId>
-  <name>C++ Hello World example implementation</name>
-  <packaging>pom</packaging>
-
-  <modules>
-      <module>PingCounter2</module>
-      <module>Sink2</module>
-      <module>Source2</module>
-  </modules>
-
+  <artifactId>HelloWorld-rti-cpp</artifactId>
+  <packaging>nar</packaging>
   <dependencies>
     <dependency>
-        <groupId>org.c2w</groupId>
-        <artifactId>HelloWorld-base-cpp</artifactId>
-        <version>${project.version}</version>
-        <type>nar</type>
+      <groupId>org.c2w</groupId>
+      <artifactId>rti-base-cpp</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <type>nar</type>
     </dependency>
   </dependencies>
 
@@ -35,7 +26,7 @@
             <configuration>
                 <libraries>
                     <library> 
-                        <type>executable</type>
+                        <type>static</type>
                     </library>
                 </libraries>
             </configuration>
@@ -43,4 +34,4 @@
     </plugins>
   </build>
 
- </project>
+</project>

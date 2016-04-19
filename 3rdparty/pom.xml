@@ -51,6 +51,7 @@
                         </defines>
                         <systemIncludePaths>
                           <systemIncludePath>${build.BOOST_INC_DIR}</systemIncludePath>
+                          <systemIncludePath>${build.RTI_INC_DIR}</systemIncludePath>
                         </systemIncludePaths>
                     </cpp>
                     <linker>

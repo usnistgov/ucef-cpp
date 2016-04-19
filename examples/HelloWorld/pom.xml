@@ -96,7 +96,8 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
           <modules>
-              <module>HelloWorld_base-cpp</module>   
+              <module>HelloWorld-base-cpp</module>  
+              <module>HelloWorld-rti-cpp</module>  
           </modules>  
         </profile>
 
