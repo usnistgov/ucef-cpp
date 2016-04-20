@@ -81,6 +81,9 @@
                             <directory>${build.MYSQL_LIB_DIR}</directory>
                           </lib>
                         </libs>
+                        <!-- WARNING! narDependencyLibOrder parameter is not (well) documented -->
+                        <!-- Make sure its function/behaviour has not changed if using NAR version different from 3.3.0 -->
+                        <!-- Documentation https://github.com/maven-nar/nar-maven-plugin/blob/bd5a26aed9713293c0007da34951e20c8c6314b4/src/main/java/com/github/maven_nar/Linker.java#L148 -->
                         <narDependencyLibOrder>org.c2w:SynchronizedFederate,org.c2w:C2WConsoleLogger,org.c2w:core-cpp,org.c2w:rti-base-cpp</narDependencyLibOrder>
                     </linker>
                 </configuration>
