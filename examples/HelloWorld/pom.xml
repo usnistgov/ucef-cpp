@@ -81,7 +81,7 @@
                             <directory>${build.MYSQL_LIB_DIR}</directory>
                           </lib>
                         </libs>
-                        
+                        <narDependencyLibOrder>org.c2w:SynchronizedFederate,org.c2w:C2WConsoleLogger,org.c2w:core-cpp,org.c2w:rti-base-cpp</narDependencyLibOrder>
                     </linker>
                 </configuration>
             </plugin>
