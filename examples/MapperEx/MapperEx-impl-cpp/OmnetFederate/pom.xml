@@ -11,6 +11,10 @@
   <name>C++ MapperEx example OmnetFedrate implementation</name>
   <packaging>nar</packaging>
 
+	<properties>
+        <c2w.version>0.1.0</c2w.version>
+	</properties>
+
   <build>
     <plugins>
         <plugin>
@@ -18,7 +22,8 @@
             <artifactId>nar-maven-plugin</artifactId>
             <extensions>true</extensions>
             <configuration>
-                <gnuMakeEnv>PROJECTTARGET=${project.build.directory},PROJECTAOL=${nar.aol},C2WVERSION=${c2w.version}</gnuMakeEnv>
+		<!--gnuMakeArgs>-n</gnuMakeArgs-->                
+<gnuMakeEnv>PROJECTTARGET=${project.build.directory},PROJECTAOL=${nar.aol},C2WVERSION=${c2w.version}</gnuMakeEnv>
             </configuration>
         </plugin>
     </plugins>
