@@ -74,25 +74,27 @@ INCLUDE_PATH = \
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS = -L$(PORTICO_PROJ)/lib/gcc4 -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(SYNCHRONIZEDFEDERATE_PROJ)/Debug -L$(SYNCHRONIZEDFEDERATE_PROJ)/out/$(CONFIGNAME) -L$(OMNETFEDERATE_PROJ)/Debug -L$(OMNETFEDERATE_PROJ)/out/$(CONFIGNAME) -lmysqlcppconn -lboost_system -lboost_thread -lboost_regex -lRTI-NG -lFedTime -linet -lOmnetFederate -linet -lSynchronizedFederate
-LIBS += -Wl,-rpath,`abspath $(PORTICO_PROJ)/lib/gcc4` -Wl,-rpath,`abspath $(SYNCHRONIZEDFEDERATE_PROJ)/Debug` -Wl,-rpath,`abspath $(OMNETFEDERATE_PROJ)/Debug` -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src` -Wl,-rpath,`abspath $(OMNETFEDERATE_PROJ)/out/$(CONFIGNAME)` -Wl,-rpath,`abspath $(SYNCHRONIZEDFEDERATE_PROJ)/out/$(CONFIGNAME)`
+LIBS = -L$(PORTICO_PROJ)/lib/gcc4 -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(SYNCHRONIZEDFEDERATE_PROJ) -L$(SYNCHRONIZEDFEDERATE_PROJ) -L$(OMNETFEDERATE_PROJ) -L$(OMNETFEDERATE_PROJ)/out/$(CONFIGNAME) -L$(C2WCONSOLELOGGER_PROJ) -lmysqlcppconn -lboost_system -lboost_thread -lboost_regex -lRTI-NG64 -lFedTime64 -linet -lOmnetFederate-0.1.0 -linet -lSynchronizedFederate-0.1.0 -lC2WConsoleLogger-0.1.0
+LIBS += -Wl,-rpath,`abspath $(PORTICO_PROJ)/lib/gcc4` -Wl,-rpath,`abspath $(SYNCHRONIZEDFEDERATE_PROJ)` -Wl,-rpath,`abspath $(OMNETFEDERATE_PROJ)` -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src` -Wl,-rpath,`abspath $(OMNETFEDERATE_PROJ)` -Wl,-rpath,`abspath $(SYNCHRONIZEDFEDERATE_PROJ)` -Wl,-rpath,`abspath $(C2WCONSOLELOGGER_PROJ)`
 
 # Output directory
-PROJECT_OUTPUT_DIR = out
+PROJECT_OUTPUT_DIR = ../target/bin
 PROJECTRELATIVE_PATH =
-O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
+O = $(PROJECT_OUTPUT_DIR)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS = $O/OmnetFederate/MapperExFilterInit.o
+OBJS = 
+#$O/OmnetFederate/MapperExFilterInit.o
 
 # Message files
 MSGFILES =
 
 # Other makefile variables (-K)
-INET_PROJ=/opt/inetmanet/inetmanet-2.2
-OMNETFEDERATE_PROJ=/home/c2wt/Projects/c2wt/core/src/cpp/OmnetFederate
-SYNCHRONIZEDFEDERATE_PROJ=/home/c2wt/Projects/c2wt/core/src/cpp/SynchronizedFederate
-PORTICO_PROJ=/opt/portico/portico-2.0.2
+INET_PROJ=$(INETMANET_HOME)
+OMNETFEDERATE_PROJ=/root/Projects/c2wt/c2wtng-cpp/examples/MapperEx/MapperEx-impl-cpp/OmnetFederate/target/nar/OmnetFederate-0.1.0-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared/
+SYNCHRONIZEDFEDERATE_PROJ=/root/Projects/c2wt/c2wtng-cpp/examples/MapperEx/MapperEx-impl-cpp/OmnetFederate/target/nar/SynchronizedFederate-0.1.0-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared/
+C2WCONSOLELOGGER_PROJ=/root/Projects/c2wt/c2wtng-cpp/examples/MapperEx/MapperEx-impl-cpp/OmnetFederate/target/nar/C2WConsoleLogger-0.1.0-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared/
+PORTICO_PROJ=$(RTI_HOME)
 C2WTROOT_PROJ=/home/c2wt/Projects/c2wt
 
 #------------------------------------------------------------------------------
@@ -147,6 +149,8 @@ $O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile
 	@echo Creating executable: $@
 	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET)  $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
 
+install: all
+
 .PHONY: all clean cleanall depend msgheaders
 
 .SUFFIXES: .cc
@@ -179,7 +183,7 @@ depend:
 	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc OmnetFederate/*.cc OmnetFederate/logs/*.cc OmnetFederate/results/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
-$O/OmnetFederate/MapperExFilterInit.o: OmnetFederate/MapperExFilterInit.cc \
-	OmnetFederate/MapperExFilterInit.h \
-	$(OMNETFEDERATE_PROJ)/OmnetFOMInteractions.h
+#$O/OmnetFederate/MapperExFilterInit.o: OmnetFederate/MapperExFilterInit.cc \
+#	OmnetFederate/MapperExFilterInit.h \
+#	$(OMNETFEDERATE_PROJ)/OmnetFOMInteractions.h
 
