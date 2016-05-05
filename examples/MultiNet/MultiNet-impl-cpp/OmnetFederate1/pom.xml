@@ -10,5 +10,23 @@
   <artifactId>MultiNet-OmnetFedrate1-cpp</artifactId>
   <name>C++ MultiNet example OmnetFedrate1 implementation</name>
   <packaging>nar</packaging>
+  
+  	<properties>
+        <c2w.version>0.1.0</c2w.version>
+        <model.version>${project.version}</model.version>
+	</properties>
 
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>com.github.maven-nar</groupId>
+            <artifactId>nar-maven-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+		            <!--gnuMakeArgs>-n</gnuMakeArgs-->                
+                <gnuMakeEnv>PROJECTTARGET=${project.build.directory},PROJECTAOL=${nar.aol},C2WVERSION=${c2w.version},MODELVERSION=${model.version}</gnuMakeEnv>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
  </project>
