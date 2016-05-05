@@ -91,11 +91,11 @@ MSGFILES =
 
 # Other makefile variables (-K)
 INET_PROJ=$(INETMANET_HOME)
-OMNETFEDERATE_PROJ=/root/Projects/c2wt/c2wtng-cpp/examples/MapperEx/MapperEx-impl-cpp/OmnetFederate/target/nar/OmnetFederate-0.1.0-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared/
-SYNCHRONIZEDFEDERATE_PROJ=/root/Projects/c2wt/c2wtng-cpp/examples/MapperEx/MapperEx-impl-cpp/OmnetFederate/target/nar/SynchronizedFederate-0.1.0-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared/
-C2WCONSOLELOGGER_PROJ=/root/Projects/c2wt/c2wtng-cpp/examples/MapperEx/MapperEx-impl-cpp/OmnetFederate/target/nar/C2WConsoleLogger-0.1.0-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared/
+OMNETFEDERATE_PROJ=$(PROJECTTARGET)/nar/OmnetFederate-$(C2WVERSION)-$(PROJECTAOL)-shared/lib/$(PROJECTAOL)/shared/
+SYNCHRONIZEDFEDERATE_PROJ=$(PROJECTTARGET)/target/nar/SynchronizedFederate-$(C2WVERSION)-$(PROJECTAOL)-shared/lib/$(PROJECTAOL)/shared/
+C2WCONSOLELOGGER_PROJ=$(PROJECTTARGET)/nar/C2WConsoleLogger-$(C2WVERSION)-$(PROJECTAOL)-shared/lib/$(PROJECTAOL)/shared/
 PORTICO_PROJ=$(RTI_HOME)
-C2WTROOT_PROJ=/home/c2wt/Projects/c2wt
+C2WTROOT_PROJ=$(C2WTROOT)
 
 #------------------------------------------------------------------------------
 
