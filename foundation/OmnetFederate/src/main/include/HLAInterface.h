@@ -556,6 +556,9 @@ public:
 	virtual int numInitStages( void ) const;
 	virtual void initialize( int stage );
 	virtual void handleMessage( cMessage *msg );
+	virtual void finish() {
+	    SynchronizedFederate::finalizeAndTerminate();
+	}
 
 	ObjectMsg *wrapObject( ObjectRootSP objectRootSP, const std::string &name, simtime_t timestamp ) {
 	

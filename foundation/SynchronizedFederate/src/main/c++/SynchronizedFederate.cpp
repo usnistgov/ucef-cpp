@@ -46,6 +46,16 @@ const double SynchronizedFederate::_stepSize = 0.2;
 void SynchronizedFederate::createRTI( void ) {
 
 	bool rtiNotPresent = true;
+	
+	if ( SynchronizedFederate::FEDERATION_MANAGER_NAME.compare( getFederateId() ) != 0 ) {
+        // Himanshu: This is a regular federate, wait 20 seconds for federation manager to initialize first
+	    std::cout << "Regular federate waiting 20 secs for Federation Manager to initialize" << std:: endl << std::flush;
+#ifdef _WIN32
+            Sleep( 20000 );
+#else
+            usleep( 20000000 );
+#endif
+	}
 	while( rtiNotPresent ) {
 		try {
 			std::cout << "acquiring connection to RTI ... " << std::flush;
@@ -64,7 +74,7 @@ void SynchronizedFederate::createRTI( void ) {
 
 }
 
-void SynchronizedFederate::joinFederation( const std::string &federation_id, const std::string &federate_id ) {
+void SynchronizedFederate::joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile ) {
 
     std::cout << "[" << federate_id << "] federate joining federation [" << federation_id << "] ... " << std::flush;
 
@@ -75,24 +85,32 @@ void SynchronizedFederate::joinFederation( const std::string &federation_id, con
 	bool federationNotPresent = true;
 	while( federationNotPresent ) {
 		try {
-		    int descriptor;
-		    int counter = 0;
-		    while(   (  descriptor = open( _lockFileName.c_str(), O_RDONLY | O_CREAT | O_EXCL, 0777 )  )  <  0   ) {
-		        if ( errno == EEXIST || errno == EBUSY ) {
-		            if ( counter++ >= 60 ) {
-	                    std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": timeout after 60 seconds.  Exiting." << std::endl;
-	                    exit(1);
-		            }
-		            usleep( 1000000 );
-		        } else {
-		            std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": " << sys_errlist[ errno ] << ".  Exiting." << std::endl;
-		            exit(1);
-		        }
-		    }
-		    close( descriptor );
-			getRTI()->joinFederationExecution( federate_id.c_str(), federation_id.c_str(), this );
-			remove( _lockFileName.c_str() );
 
+
+		    if(!ignoreLockFile) {
+                int descriptor;
+                int counter = 0;
+                while(   (  descriptor = open( _lockFileName.c_str(), O_RDONLY | O_CREAT | O_EXCL, 0777 )  )  <  0   ) {
+                    if ( errno == EEXIST || errno == EBUSY ) {
+                        if ( counter++ >= 60 ) {
+                            std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": timeout after 60 seconds.  Exiting." << std::endl;
+                            exit(1);
+                        }
+                        std::cout << "Waiting for federation to be created.." << std::endl;
+                        usleep( 1000000 );
+                    } else {
+                        std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": " << sys_errlist[ errno ] << ".  Exiting." << std::endl;
+                        exit(1);
+                    }
+                }
+                close( descriptor );
+		    }
+
+		    getRTI()->joinFederationExecution( federate_id.c_str(), federation_id.c_str(), this );
+
+		    if(!ignoreLockFile) {
+		        remove( _lockFileName.c_str() );
+		    }
 
 			federationNotPresent = false;
 		} catch ( RTI::FederateAlreadyExecutionMember & ) {

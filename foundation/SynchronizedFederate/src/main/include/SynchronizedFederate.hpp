@@ -123,7 +123,7 @@ protected:
 		_rti = 0;
 	}
 
-	void joinFederation( const std::string &federation_id, const std::string &federate_id );
+	void joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile = true );
 	
 	std::string getFederateId( void ) const { return _federateId; }
 	std::string getFederationId( void ) const { return _federationId; }
@@ -358,13 +358,31 @@ public:
 	}
 
 protected:
+
+	void finalizeAndTerminate() {
+	        std::cout << getFederateId() << ": resigning from federation...";
+            resignFederationExecution();
+            std::cout << "done." << std::endl;
+
+            // Wait for 10 seconds for Federation Manager to recognize that the federate has resigned.
+#ifdef _WIN32
+            Sleep( 10000 );
+#else
+            usleep( 10000000 );
+#endif
+
+            // TODO: Kill the entire process group (like in SynchronizedFederate.java)
+
+            // Exit
+            exit(0);
+	}
+
 	void handleIfSimEnd(InteractionRoot::SP interactionRootSP, double timestamp) {
 		int classHandle = interactionRootSP->getClassHandle();
 		if(  SimEnd::match( classHandle )  ) {
 			std::cout << getFederateId() << ": SimEnd interaction received, exiting..." << std::endl;
             interactionRootSP->createLog( timestamp, false );
-            // TODO: Need to kill the entire process group like in Java version
-			exit(0);
+            finalizeAndTerminate();
 		}
 	}
 
