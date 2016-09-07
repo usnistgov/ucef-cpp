@@ -222,6 +222,7 @@ void SynchronizedFederate::enableTimeRegulation( double time, double lookahead )
 
 void SynchronizedFederate::resignFederationExecution( RTI::ResignAction resignAction ) {
     bool federationNotResigned = true;
+    int Counter=10;
     while( federationNotResigned ) {
         try {
             getRTI()->resignFederationExecution( resignAction );
@@ -237,10 +238,15 @@ void SynchronizedFederate::resignFederationExecution( RTI::ResignAction resignAc
 			resignAction = static_cast< RTI::ResignAction >(  static_cast< int >( resignAction ) | static_cast< int >( RTI::RELEASE_ATTRIBUTES )  );
         } catch ( ... ) {
             std::cerr << "WARNING:  problem encountered while resigning federation execution:  retry" << std::endl;
+
 #ifdef _WIN32
 			Sleep( 500 );
 #else
 			usleep( 500000 );
+			if( Counter-- < 1){
+			    std::cerr << "Resigned Failed. Exiting from the Federation" << std::endl;
+                federationNotResigned = false;
+			}
 #endif
 
         }
