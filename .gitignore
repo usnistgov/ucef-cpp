@@ -89,3 +89,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Intellij Specifics
+.iml
+*.iml
+*.idea
+.idea/
