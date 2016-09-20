@@ -6,6 +6,7 @@
     <artifactId>c2w-HelloWorld-cpp</artifactId>
     <version>0.2.0-SNAPSHOT</version>
   </parent>
+  <name>C++ Hello World base-Cpp</name>
   <artifactId>HelloWorld-base-cpp</artifactId>
   <packaging>nar</packaging>
   <dependencies>
