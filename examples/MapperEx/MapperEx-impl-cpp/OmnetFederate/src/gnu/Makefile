@@ -74,7 +74,7 @@ INCLUDE_PATH = \
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS = -L$(PORTICO_PROJ)/lib/gcc4 -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(SYNCHRONIZEDFEDERATE_PROJ) -L$(SYNCHRONIZEDFEDERATE_PROJ) -L$(OMNETFEDERATE_PROJ) -L$(OMNETFEDERATE_PROJ)/out/$(CONFIGNAME) -L$(C2WCONSOLELOGGER_PROJ) -lmysqlcppconn -lboost_system -lboost_thread -lboost_regex -lRTI-NG64 -lFedTime64 -linet -lOmnetFederate-$(C2WVERSION) -linet -lSynchronizedFederate-$(C2WVERSION) -lC2WConsoleLogger-$(C2WVERSION)
+LIBS = -L$(PORTICO_PROJ)/lib/gcc4 -L$(INET_PROJ)/out/$(CONFIGNAME)/src -L$(SYNCHRONIZEDFEDERATE_PROJ) -L$(SYNCHRONIZEDFEDERATE_PROJ) -L$(OMNETFEDERATE_PROJ) -L$(OMNETFEDERATE_PROJ)/out/$(CONFIGNAME) -L$(C2WCONSOLELOGGER_PROJ) -lmysqlcppconn -lboost_system -lboost_thread -lboost_regex -lRTI-NG_64d -lFedTime_64d -linet -lOmnetFederate-$(C2WVERSION) -linet -lSynchronizedFederate-$(C2WVERSION) -lC2WConsoleLogger-$(C2WVERSION)
 LIBS += -Wl,-rpath,`abspath $(PORTICO_PROJ)/lib/gcc4` -Wl,-rpath,`abspath $(SYNCHRONIZEDFEDERATE_PROJ)` -Wl,-rpath,`abspath $(OMNETFEDERATE_PROJ)` -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src` -Wl,-rpath,`abspath $(OMNETFEDERATE_PROJ)` -Wl,-rpath,`abspath $(SYNCHRONIZEDFEDERATE_PROJ)` -Wl,-rpath,`abspath $(C2WCONSOLELOGGER_PROJ)`
 
 # Output directory
