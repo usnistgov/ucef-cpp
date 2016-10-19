@@ -25,5 +25,14 @@
         <include>*.dll</include>
       </includes>
     </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/target/nar/</directory>
+      <outputDirectory></outputDirectory>      
+      <includes>
+         <include>*.ini</include>
+         <include>*.ned</include>
+        <!--<include>*</include>-->
+      </includes>
+    </fileSet>
   </fileSets>
 </assembly>
