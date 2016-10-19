@@ -14,20 +14,35 @@
 	</properties>
 
 	<dependencies>
-		
+
+		<!--<dependency>-->
+			<!--<groupId>org.c2w.MapperEx_cpp</groupId>-->
+			<!--<artifactId>MapperEx-OmnetFedrate-cpp</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+			<!--<type>nar</type>-->
+		<!--</dependency>-->
+
+
 		<dependency><!-- The depenency for the generated code-->
 			<groupId>org.c2w.MapperEx_cpp</groupId>
 			<artifactId>MapperEx-base-java</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
+		<!--<dependency>&lt;!&ndash; The depenency for the user written code&ndash;&gt;-->
+			<!--<groupId>org.c2w.MapperEx_cpp</groupId>-->
+			<!--<artifactId>MapperEx</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+			<!--<type>pom</type>-->
+		<!--</dependency>-->
+
 		<dependency><!-- The depenency for the user written code-->
 			<groupId>org.c2w.MapperEx_cpp</groupId>
-			<artifactId>MapperEx</artifactId>
+			<artifactId>MapperEx-OmnetFederate-cpp</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<type>pom</type>
+			<type>nar</type>
 		</dependency>
-		
+
 		<dependency><!-- The depenency for the generated mapper codes-->
 			<groupId>org.c2w.MapperEx_cpp</groupId>
 			<artifactId>MapperEx-mapper-java</artifactId>
@@ -126,6 +141,14 @@
 							<goal>nar-test-unpack</goal>
 						</goals>
 					</execution>
+					<!--testing yogesh-->
+					<!--<execution>-->
+						<!--<id>nar-resources</id>-->
+						<!--<goals>-->
+							<!--<goal>nar-resources</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+					<!--End testing yogesh-->
 					<execution>
 						<id>nar-integration-test</id>
 						<goals>
@@ -382,7 +405,8 @@
 				            <goals>
 				              <goal>nar-download</goal>
 				              <goal>nar-download-dependencies</goal>
-				              <goal>nar-unpack</goal>
+				              <goal>nar-resources</goal>
+							  <goal>nar-unpack</goal>
 				              <goal>nar-unpack-dependencies</goal>
 				              <goal>nar-assembly</goal>
 				            </goals>
@@ -429,11 +453,84 @@
 					    	</arguments>
 					    	<environmentVariables>
 			                    <EXEDIR>${project.basedir}/target/${federate.name}</EXEDIR>
-			                    <LD_LIBRARY_PATH>${project.basedir}/target/nar/lib/${nar.aol}/shared/:${env.RTI_HOME}/lib/gcc4/:${env.RTI_HOME}/jre/lib/amd64/server</LD_LIBRARY_PATH>
+			                    <LD_LIBRARY_PATH>${project.basedir}/target/nar/lib/${nar.aol}/shared/:${env.RTI_HOME}/lib/gcc4/:${env.RTI_HOME}/jre/lib/amd64/server:${project.basedir}/target/nar/lib/noarch/</LD_LIBRARY_PATH>
 			                </environmentVariables>
 						</configuration>
 					</plugin>
 			    </plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>OmnetFed</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.maven-nar</groupId>
+						<artifactId>nar-maven-plugin</artifactId>
+						<version>${nar.version}</version>
+						<configuration>
+							<classifiers>
+								<classifier>${nar.aol}</classifier>
+							</classifiers>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>nar-download</goal>
+									<goal>nar-download-dependencies</goal>
+									<goal>nar-resources</goal>
+									<goal>nar-unpack</goal>
+									<goal>nar-unpack-dependencies</goal>
+									<goal>nar-assembly</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.6</version>
+						<dependencies>
+							<dependency><!-- The depenency for CPP execution assembly script-->
+								<groupId>org.c2w</groupId>
+								<artifactId>ExecutionAssembler</artifactId>
+								<version>${c2w.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<finalName>bin</finalName>
+							<descriptorRefs>
+								<descriptorRef>executionAssembly</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+						<executions>
+							<execution>
+								<id>make-assembly</id> <!-- this is used for inheritance merges -->
+								<phase>package</phase> <!-- bind to the packaging phase -->
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.4.0</version>
+						<configuration>
+							<workingDirectory>${project.basedir}/target/bin-exec</workingDirectory>
+							<executable>./MapperEx-${federate.name}-cpp</executable>
+							<arguments>
+								<!--<argument>${federation.name}</argument>-->
+								<!--<argument>${federate.name}</argument>-->
+								<!--<argument>${federate.loglevel}</argument>-->
+							</arguments>
+							<environmentVariables>
+								<EXEDIR>${project.basedir}/target/${federate.name}</EXEDIR>
+								<LD_LIBRARY_PATH>${project.basedir}/target/nar/lib/${nar.aol}/shared/:${env.RTI_HOME}/lib/gcc4/:${env.RTI_HOME}/jre/lib/amd64/server:${project.basedir}/target/nar/lib/${nar.aol}/static/</LD_LIBRARY_PATH>
+							</environmentVariables>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
     </profiles>

@@ -14,201 +14,227 @@
   <description>Mapper Federate example for C2 Windtunnel with C++ RTI and Federates</description>
 
   <modules>
-    <module>MapperEx-impl-cpp</module> 
-  </modules>  
+    <module>MapperEx-OmnetFedrate-cpp</module>
+  </modules>
 
+
+    <!--<dependencies>-->
+        <!--<dependency>-->
+            <!--<groupId>org.c2w.MapperEx_cpp</groupId>-->
+            <!--<artifactId>MapperEx-impl-cpp</artifactId>-->
+            <!--<version>0.0.1-SNAPSHOT</version>-->
+            <!--<type>nar</type>-->
+        <!--</dependency>-->
+    <!--</dependencies>-->
+
+
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>com.github.maven-nar</groupId>-->
+                <!--<artifactId>nar-maven-plugin</artifactId>-->
+                <!--<version>${nar-plugin.version}</version>-->
+                <!--<extensions>true</extensions>-->
+                <!--<configuration>-->
+                    <!--<cpp>-->
+                        <!--<name>${compiler-name}</name>-->
+                        <!--<debug>false</debug>-->
+                        <!--<includes>-->
+                            <!--<include>**/*.hpp</include>-->
+                            <!--<include>**/*.h</include>-->
+                            <!--<include>**/*.cpp</include>-->
+                            <!--<include>**/*.c</include>-->
+                        <!--</includes>-->
+                        <!--<options combine.children="append">-->
+                            <!--&lt;!&ndash;option>-std=c++11</option&ndash;&gt;-->
+                            <!--<option>-ftemplate-depth-128</option>-->
+                            <!--<option>-fno-inline</option>-->
+                            <!--<option>-Wall</option>-->
+                            <!--<option>-pedantic</option>-->
+                            <!--<option>-Wno-long-long</option>-->
+                            <!--<option>-Wno-variadic-macros</option>-->
+                        <!--</options>-->
+                        <!--<defines>-->
+                          <!--&lt;!&ndash;define>USE_MYSQL_LOGGING</define&ndash;&gt;-->
+                          <!--<define>RTI_USES_STD_FSTREAM</define>-->
+                        <!--</defines>-->
+                        <!--<systemIncludePaths>-->
+                          <!--<systemIncludePath>${build.BOOST_INC_DIR}</systemIncludePath>-->
+                          <!--<systemIncludePath>${build.RTI_INC_DIR}</systemIncludePath>-->
+                        <!--</systemIncludePaths>-->
+                    <!--</cpp>-->
+                    <!--<linker>-->
+                        <!--<name>${linker-name}</name>-->
+                        <!--<incremental>false</incremental>-->
+                        <!--<libs>-->
+                          <!--<lib>-->
+                            <!--<name>RTI-NG64</name>-->
+                            <!--<type>shared</type>-->
+                            <!--<directory>${build.RTI_LIB_DIR}</directory>-->
+                          <!--</lib>-->
+                          <!--<lib>-->
+                            <!--<name>FedTime64</name>-->
+                            <!--<type>shared</type>-->
+                            <!--<directory>${build.RTI_LIB_DIR}</directory>-->
+                          <!--</lib>-->
+                          <!--<lib>-->
+                            <!--<name>boost_thread</name>-->
+                            <!--<type>shared</type>-->
+                            <!--<directory>${build.BOOST_LIB_DIR}</directory>-->
+                          <!--</lib>-->
+                          <!--<lib>-->
+                            <!--<name>boost_system</name>-->
+                            <!--<type>shared</type>-->
+                            <!--<directory>${build.BOOST_LIB_DIR}</directory>-->
+                          <!--</lib>-->
+                          <!--<lib>-->
+                            <!--<name>mysqlcppconn</name>-->
+                            <!--<type>shared</type>-->
+                            <!--<directory>${build.MYSQL_LIB_DIR}</directory>-->
+                          <!--</lib>-->
+                            <!--<lib>-->
+                                <!--<name>jvm</name>-->
+                                <!--<type>shared</type>-->
+                                <!--<directory>${build.RTI_LIB_JVM_DIR}</directory>-->
+                            <!--</lib>-->
+                        <!--</libs>-->
+
+                        <!--&lt;!&ndash; WARNING! narDependencyLibOrder parameter is not (well) documented &ndash;&gt;-->
+                        <!--&lt;!&ndash; Make sure its function/behaviour has not changed if using NAR version different from 3.3.0 &ndash;&gt;-->
+                        <!--&lt;!&ndash; Documentation https://github.com/maven-nar/nar-maven-plugin/blob/bd5a26aed9713293c0007da34951e20c8c6314b4/src/main/java/com/github/maven_nar/Linker.java#L148 &ndash;&gt;-->
+                        <!--<narDependencyLibOrder>org.c2w:SynchronizedFederate,org.c2w:C2WConsoleLogger,org.c2w:core-cpp,org.c2w:rti-base-cpp</narDependencyLibOrder>-->
+                    <!--</linker>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
+
+
+    <!--<profiles>-->
+        <!--<profile>-->
+          <!--<id>include-generated</id>-->
+          <!--<activation>-->
+                <!--<activeByDefault>false</activeByDefault>-->
+            <!--</activation>-->
+          <!--<modules>-->
+              <!--<module>HelloWorld-base-cpp</module>  -->
+              <!--<module>HelloWorld-rti-cpp</module>  -->
+          <!--</modules>  -->
+        <!--</profile>-->
+
+        <!--<profile>-->
+            <!--<id>windows-common</id>-->
+            <!--<activation>-->
+                <!--<os>-->
+                    <!--<family>windows</family>-->
+                <!--</os>-->
+            <!--</activation>-->
+            <!--<properties>-->
+              <!--<build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>-->
+              <!--<build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>-->
+              <!--<build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>-->
+              <!--<build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>-->
+              <!--<build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>-->
+            <!--</properties>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>com.github.maven-nar</groupId>-->
+                        <!--<artifactId>nar-maven-plugin</artifactId>-->
+                        <!--<extensions>true</extensions>-->
+                        <!--<configuration>-->
+                            <!--<cpp>-->
+                                <!--<options combine.children="append">-->
+                                    <!--<option>-mthreads</option>-->
+                                <!--</options>-->
+                            <!--</cpp>-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
+        <!--</profile>-->
+
+        <!--<profile>-->
+            <!--<id>linux-common</id>-->
+            <!--<activation>-->
+                <!--<os>-->
+                    <!--<family>linux</family>-->
+                <!--</os>-->
+            <!--</activation>-->
+            <!--<properties>-->
+                <!--<build.RTI_LIB_JVM_DIR>${env.RTI_HOME}/jre/lib/amd64/server</build.RTI_LIB_JVM_DIR>-->
+                <!--<build.RTI_LIB_DIR>${env.RTI_HOME}/lib/gcc4</build.RTI_LIB_DIR>-->
+              <!--<build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>-->
+              <!--<build.BOOST_INC_DIR>/usr/include/boost</build.BOOST_INC_DIR>-->
+              <!--<build.BOOST_LIB_DIR>/usr/lib/x86_64-linux-gnu</build.BOOST_LIB_DIR>-->
+              <!--<build.MYSQL_LIB_DIR>/usr/lib/</build.MYSQL_LIB_DIR>-->
+            <!--</properties>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>com.github.maven-nar</groupId>-->
+                        <!--<artifactId>nar-maven-plugin</artifactId>-->
+                        <!--<extensions>true</extensions>-->
+                        <!--<configuration>-->
+                            <!--<cpp>-->
+                                <!--<options combine.children="append">-->
+                                    <!--<option>-pthread</option>-->
+                                <!--</options>-->
+                            <!--</cpp>-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
+        <!--</profile>-->
+
+        <!--<profile>-->
+            <!--<id>mac-common</id>-->
+            <!--<activation>-->
+                <!--<os>-->
+                    <!--<family>mac</family>-->
+                <!--</os>-->
+            <!--</activation>-->
+            <!--<properties>-->
+              <!--<build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>-->
+              <!--<build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>-->
+              <!--<build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>-->
+              <!--<build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>-->
+              <!--<build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>-->
+            <!--</properties>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>com.github.maven-nar</groupId>-->
+                        <!--<artifactId>nar-maven-plugin</artifactId>-->
+                        <!--<extensions>true</extensions>-->
+                        <!--<configuration>-->
+                            <!--<cpp>-->
+                                <!--<options combine.children="append">-->
+                                    <!--<option>-pthread</option>-->
+                                <!--</options>-->
+                            <!--</cpp>-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
+        <!--</profile>-->
+    <!--</profiles>-->
     <build>
         <plugins>
             <plugin>
                 <groupId>com.github.maven-nar</groupId>
                 <artifactId>nar-maven-plugin</artifactId>
-                <version>${nar-plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <cpp>
-                        <name>${compiler-name}</name>
-                        <debug>false</debug>
-                        <includes>
-                            <include>**/*.hpp</include>
-                            <include>**/*.h</include>
-                            <include>**/*.cpp</include>
-                            <include>**/*.c</include>
-                        </includes>
-                        <options combine.children="append">
-                            <!--option>-std=c++11</option-->
-                            <option>-ftemplate-depth-128</option>
-                            <option>-fno-inline</option>
-                            <option>-Wall</option>
-                            <option>-pedantic</option>
-                            <option>-Wno-long-long</option>
-                            <option>-Wno-variadic-macros</option>
-                        </options>
-                        <defines>
-                          <!--define>USE_MYSQL_LOGGING</define-->
-                          <define>RTI_USES_STD_FSTREAM</define>
-                        </defines>
-                        <systemIncludePaths>
-                          <systemIncludePath>${build.BOOST_INC_DIR}</systemIncludePath>
-                          <systemIncludePath>${build.RTI_INC_DIR}</systemIncludePath>
-                        </systemIncludePaths>
-                    </cpp>
-                    <linker>
-                        <name>${linker-name}</name>
-                        <incremental>false</incremental>
-                        <libs>
-                          <lib>
-                            <name>RTI-NG64</name>
-                            <type>shared</type>
-                            <directory>${build.RTI_LIB_DIR}</directory>
-                          </lib>
-                          <lib>
-                            <name>FedTime64</name>
-                            <type>shared</type>
-                            <directory>${build.RTI_LIB_DIR}</directory>
-                          </lib>
-                          <lib>
-                            <name>boost_thread</name>
-                            <type>shared</type>
-                            <directory>${build.BOOST_LIB_DIR}</directory>
-                          </lib>
-                          <lib>
-                            <name>boost_system</name>
-                            <type>shared</type>
-                            <directory>${build.BOOST_LIB_DIR}</directory>
-                          </lib>
-                          <lib>
-                            <name>mysqlcppconn</name>
-                            <type>shared</type>
-                            <directory>${build.MYSQL_LIB_DIR}</directory>
-                          </lib>
-                            <lib>
-                                <name>jvm</name>
-                                <type>shared</type>
-                                <directory>${build.RTI_LIB_JVM_DIR}</directory>
-                            </lib>
-                        </libs>
-
-                        <!-- WARNING! narDependencyLibOrder parameter is not (well) documented -->
-                        <!-- Make sure its function/behaviour has not changed if using NAR version different from 3.3.0 -->
-                        <!-- Documentation https://github.com/maven-nar/nar-maven-plugin/blob/bd5a26aed9713293c0007da34951e20c8c6314b4/src/main/java/com/github/maven_nar/Linker.java#L148 -->
-                        <narDependencyLibOrder>org.c2w:SynchronizedFederate,org.c2w:C2WConsoleLogger,org.c2w:core-cpp,org.c2w:rti-base-cpp</narDependencyLibOrder>
-                    </linker>
+                    <libraries>
+                        <library>
+                            <type>executable</type>
+                        </library>
+                    </libraries>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-
-    <profiles>
-        <profile>
-          <id>include-generated</id>
-          <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-          <modules>
-              <module>HelloWorld-base-cpp</module>  
-              <module>HelloWorld-rti-cpp</module>  
-          </modules>  
-        </profile>
-
-        <profile>
-            <id>windows-common</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
-              <build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>
-              <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
-              <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
-              <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.maven-nar</groupId>
-                        <artifactId>nar-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <cpp>
-                                <options combine.children="append">
-                                    <option>-mthreads</option>
-                                </options>
-                            </cpp>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>linux-common</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                </os>
-            </activation>
-            <properties>
-                <build.RTI_LIB_JVM_DIR>${env.RTI_HOME}/jre/lib/amd64/server</build.RTI_LIB_JVM_DIR>
-                <build.RTI_LIB_DIR>${env.RTI_HOME}/lib/gcc4</build.RTI_LIB_DIR>
-              <build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>
-              <build.BOOST_INC_DIR>/usr/include/boost</build.BOOST_INC_DIR>
-              <build.BOOST_LIB_DIR>/usr/lib/x86_64-linux-gnu</build.BOOST_LIB_DIR>
-              <build.MYSQL_LIB_DIR>/usr/lib/</build.MYSQL_LIB_DIR>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.maven-nar</groupId>
-                        <artifactId>nar-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <cpp>
-                                <options combine.children="append">
-                                    <option>-pthread</option>
-                                </options>
-                            </cpp>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>mac-common</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <properties>
-              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
-              <build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>
-              <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
-              <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
-              <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.maven-nar</groupId>
-                        <artifactId>nar-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <cpp>
-                                <options combine.children="append">
-                                    <option>-pthread</option>
-                                </options>
-                            </cpp>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 <repositories>
     <repository>
       <id>archiva.internal</id>

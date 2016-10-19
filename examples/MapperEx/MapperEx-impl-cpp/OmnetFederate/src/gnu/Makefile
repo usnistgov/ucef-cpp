@@ -6,7 +6,8 @@
 #
 
 # Name of target to be created (-o option)
-TARGET = MapperEx$(EXE_SUFFIX)
+#TARGET = MapperEx$(EXE_SUFFIX)
+TARGET = MapperEx-OmnetFederate-cpp$(EXE_SUFFIX)
 
 # User interface (uncomment one) (-u option)
 USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)

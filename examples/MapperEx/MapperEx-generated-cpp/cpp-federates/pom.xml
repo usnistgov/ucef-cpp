@@ -117,7 +117,8 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
           <modules>
-              <module>HelloWorld_base-cpp</module>   
+              <module>MapperEx-base-cpp</module>
+              <module>MapperEx-omnet-cpp</module>
           </modules>  
         </profile>
 

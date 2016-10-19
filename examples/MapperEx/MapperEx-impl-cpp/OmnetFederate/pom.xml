@@ -3,13 +3,14 @@
 
   <parent>
     <groupId>org.c2w.MapperEx_cpp</groupId>
-    <artifactId>MapperEx-impl-cpp</artifactId>
+    <artifactId>MapperEx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>MapperEx-OmnetFedrate-cpp</artifactId>
-  <name>C++ MapperEx example OmnetFedrate implementation</name>
+    <artifactId>MapperEx-OmnetFederate-cpp</artifactId>
+    <name>C++ MapperEx example OmnetFederate implementation</name>
   <packaging>nar</packaging>
+
 
 	<properties>
         <c2w.version>0.3.0-SNAPSHOT</c2w.version>
@@ -17,14 +18,39 @@
 	</properties>
 
   <build>
+      <!-- <resources>
+          <resource>
+              <directory>${project.basedir}/src/main/resources</directory>
+              <includes>
+                  <include>MapperExNetwork.ned</include>
+                  <include>MapperEx.ini</include>
+              </includes>
+              <targetPath>${project.build.outputDirectory}</targetPath>
+          </resource>
+      </resources> -->
+
     <plugins>
         <plugin>
             <groupId>com.github.maven-nar</groupId>
             <artifactId>nar-maven-plugin</artifactId>
             <extensions>true</extensions>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>nar-download</goal>
+                        <goal>nar-download-dependencies</goal>
+                        <goal>nar-gnu-resources</goal>
+                        <goal>nar-unpack</goal>
+                        <goal>nar-unpack-dependencies</goal>
+                        <goal>nar-assembly</goal>
+                        <goal>nar-resources</goal>
+                    </goals>
+                </execution>
+            </executions>
             <configuration>
-		            <!--gnuMakeArgs>-n</gnuMakeArgs-->                
-                <gnuMakeEnv>PROJECTTARGET=${project.build.directory},PROJECTAOL=${nar.aol},C2WVERSION=${c2w.version},MODELVERSION=${model.version}</gnuMakeEnv>
+		            <!--gnuMakeArgs>-n</gnuMakeArgs-->
+                <gnuMakeEnv>PROJECTTARGET=${project.build.directory},PROJECTAOL=${nar.aol},C2WVERSION=${c2w.version},MODELVERSION=${model.version}, PATH=$PATH:/home/vagrant/c2wt-dev/dependency/omnetpp/omnetpp-4.6/bin/</gnuMakeEnv>
+                <!--<resourceDirectory>${project.basedir}/src/nar/resources/noarch</resourceDirectory>-->
             </configuration>
         </plugin>
     </plugins>

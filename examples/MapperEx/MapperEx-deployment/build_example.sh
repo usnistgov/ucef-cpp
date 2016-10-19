@@ -20,7 +20,7 @@ export LD_LIBRARY_PATH=$RTI_HOME/jre/lib/amd64/server/
 
 mvn_install_deploy() {
 	echo "Maven Compiling...."
-	mvn clean install
+	mvn clean package install -U
 	echo "Maven Deploying to the Archiva....."
 	mvn deploy
 	echo "Deployment Completed...."
@@ -39,4 +39,4 @@ mvn_install_deploy
 
 echo "=================================================================================="
 echo "Completed the compilation, installation, deployment of the C2W foundation packages"
-echo "=================================================================================="
+echo "=============================================================================="

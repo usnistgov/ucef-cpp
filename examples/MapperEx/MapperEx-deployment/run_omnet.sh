@@ -18,25 +18,4 @@ export LD_LIBRARY_PATH=$RTI_HOME/jre/lib/amd64/server/
 
 
 
-mvn_install_deploy() {
-	echo "Maven Compiling...."
-	mvn clean install package -U
-	echo "Maven Deploying to the Archiva....."
-	mvn deploy
-	echo "Deployment Completed...."
-
-}
-
-traverse_dir(){
-	echo ${1}
-	cd ${1} 
-	mvn_install_deploy
-	cd ..
-}
-
-PROJECT_DIR=${PWD}
-mvn_install_deploy
-
-echo "=================================================================================="
-echo "Completed the compilation, installation, deployment of the C2W foundation packages"
-echo "=================================================================================="
+mvn package exec:exec -P OmnetFed,OmnetFederate
