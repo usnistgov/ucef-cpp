@@ -239,14 +239,15 @@ void SynchronizedFederate::resignFederationExecution( RTI::ResignAction resignAc
         } catch ( ... ) {
             std::cerr << "WARNING:  problem encountered while resigning federation execution:  retry" << std::endl;
 
-#ifdef _WIN32
-			Sleep( 500 );
-#else
-			usleep( 500000 );
 			if( Counter-- < 1){
 			    std::cerr << "Resigned Failed. Exiting from the Federation" << std::endl;
                 federationNotResigned = false;
 			}
+
+#ifdef _WIN32
+			Sleep( 500 );
+#else
+			usleep( 500000 );
 #endif
 
         }
