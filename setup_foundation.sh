@@ -1,15 +1,14 @@
 #!/bin/bash
-# Author: Yogesh Barve
-#export RTI_HOME=/home/vagrant/c2wt-dev/dependency/portico/portico-2.1.0
-export RTI_HOME=$HOME/portico-2.1.0
+
+if [ -z "$RTI_HOME" ]; then
+	export RTI_HOME=/usr/local/portico/portico-2.1.0
+fi
 
 mvn_install_deploy() {
-	echo "Maven Compiling...."
+	echo "Maven install..."
 	mvn clean install -U
-	echo "Maven Deploying to the Archiva....."
+	echo "Deploying to Archiva..."
 	mvn deploy
-	echo "Deployment Completed...."
-
 }
 
 traverse_dir(){
@@ -20,22 +19,31 @@ traverse_dir(){
 }
 
 PROJECT_DIR=${PWD}
+CPP_FOUNDATION_DIR=${PROJECT_DIR}/foundation
+THIRD_PARTY=${PROJECT_DIR}/3rdparty
 
+echo "Compiling 3rd party libraries first"
 
-CPP_FOUNDATION_DIR=$PROJECT_DIR/foundation 
-thirdParty=$PROJECT_DIR/3rdparty
+# 3rdparty
+cd ${THIRD_PARTY}
 
-echo "Compiling the 3rdParty"
-cd $thirdParty
+# 3rdparty/portico-hla
 traverse_dir "portico-hla"
+
+# 3rdparty/mysql-connector
 traverse_dir "mysql-connector"
+
+# 3rdparty
 mvn_install_deploy
-cd ..
 
-echo "Entering foundation Directory: " $CPP_FOUNDATION_DIR
-cd $CPP_FOUNDATION_DIR/
+# .
+cd ${PROJECT_DIR}
 
+# foundation
+echo "Entering foundation Directory: " ${CPP_FOUNDATION_DIR}
+cd ${CPP_FOUNDATION_DIR}
 
+# foundation/*
 traverse_dir "core"
 traverse_dir "C2WMySQLLogger"
 traverse_dir "C2WConsoleLogger"
@@ -43,6 +51,8 @@ traverse_dir "rti-base"
 traverse_dir "SynchronizedFederate"
 traverse_dir "OmnetFederate"
 traverse_dir "ExecutionAssembler"
+
+# foundation/
 mvn_install_deploy
 
 echo "=================================================================================="
