@@ -48,12 +48,12 @@ void SynchronizedFederate::createRTI( void ) {
 	bool rtiNotPresent = true;
 	
 	if ( SynchronizedFederate::FEDERATION_MANAGER_NAME.compare( getFederateId() ) != 0 ) {
-        // Himanshu: This is a regular federate, wait 20 seconds for federation manager to initialize first
-	    std::cout << "Regular federate waiting 20 secs for Federation Manager to initialize" << std:: endl << std::flush;
+        // Himanshu: This is a regular federate, wait 1 seconds for federation manager to initialize first
+	    std::cout << "Regular federate waiting 1 secs for Federation Manager to initialize" << std:: endl << std::flush;
 #ifdef _WIN32
-            Sleep( 20000 );
+            Sleep( 1000 );
 #else
-            usleep( 20000000 );
+            usleep( 1000000 );
 #endif
 	}
 	while( rtiNotPresent ) {

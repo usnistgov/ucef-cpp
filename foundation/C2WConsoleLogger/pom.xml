@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.c2w</groupId>
     <artifactId>c2w-cpp-foundation</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.4.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>C2WConsoleLogger</artifactId>

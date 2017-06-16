@@ -13,7 +13,7 @@
 
 
 	<properties>
-        <c2w.version>0.3.0-SNAPSHOT</c2w.version>
+        <c2w.version>0.4.0-SNAPSHOT</c2w.version>
         <model.version>${project.version}</model.version>
 	</properties>
 
