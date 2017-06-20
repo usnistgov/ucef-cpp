@@ -119,7 +119,7 @@ protected:
 	void createRTI( void );
 
 	void destroyRTI( void ) {
-		delete _rti;
+		// delete _rti;
 		_rti = 0;
 	}
 
