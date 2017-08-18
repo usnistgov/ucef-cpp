@@ -19,32 +19,32 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-#ifndef _PINGCOUNTER_CLASS
-#define _PINGCOUNTER_CLASS
+#ifndef _SOURCE_CLASS
+#define _SOURCE_CLASS
 
-#include "PingCounter2Base.hpp"
+#include "Source2Base.hpp"
 
-class PingCounter2 : public PingCounter2Base {
+class Source2 : public Source2Base {
 private:
-    static double LOOKAHEAD;
     double _currentTime;
+    int _ix;
     
 public:
-    typedef PingCounter2Base Super;
-	PingCounter2( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ) { }
+    typedef Source2Base Super;
+	Source2( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ), _ix( 0 ) { }
 
-	virtual ~PingCounter2( void )
+	virtual ~Source2( void )
 	 throw (RTI::FederateInternalError) { }
 
-    class PingCounter2ATRCallback : public ATRCallback {
+    class Source2ATRCallback : public ATRCallback {
     private:
-    	PingCounter2 &_PingCounter2;
+    	Source2 &_Source2;
     public:
-    	PingCounter2ATRCallback( PingCounter2 &PingCounter2 ) : _PingCounter2( PingCounter2 ) { }
-    	virtual void execute( void ) { _PingCounter2.execute(); }
-		virtual SP clone( void ) { return SP(  new PingCounter2ATRCallback( *this )  ); }
+    	Source2ATRCallback( Source2 &Source2 ) : _Source2( Source2 ) { }
+    	virtual void execute( void ) { _Source2.execute(); }
+		virtual SP clone( void ) { return SP(  new Source2ATRCallback( *this )  ); }
     };
-
+    
     void initialize( void );
     void execute( void );
 };

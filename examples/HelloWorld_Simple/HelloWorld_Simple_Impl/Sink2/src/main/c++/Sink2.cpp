@@ -19,41 +19,51 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-#include "PingCounter2.hpp"
+#include "Sink2.hpp"
 
-void PingCounter2::initialize( void ) {
+void Sink2::initialize( void ) {
 
-	PingCounter2ATRCallback pc2ATRCb( *this );
-	putAdvanceTimeRequest(  _currentTime, pc2ATRCb );
+	Sink2ATRCallback sk2ATRCb( *this );
+	putAdvanceTimeRequest(  _currentTime, sk2ATRCb  );
 
     //readyToPopulate();
     //readyToRun();
+
+//	_pingCount.registerObject( getRTI() );
+//	_pingCount.updateAttributeValues( getRTI(), _currentTime + getLookAhead() );
+
 }
 
-void PingCounter2::execute( void ) {
-	SynchronizedFederate::ObjectReflector objectReflector;
+void Sink2::execute( void ) {
 
-	while(  !( objectReflector = getNextObjectReflector() ).isNull()  ) {
-		objectReflector.reflect();
-		boost::shared_ptr< PingCount > pingCountSP(   boost::static_pointer_cast< PingCount >( objectReflector.getObjectRootSP() )  );
-		std::cout << "Message from PingCounter2:  " << pingCountSP->get_SinkName() << " has received " <<
-		 pingCountSP->get_RunningCount() << " \"Ping\" interactions at time " << pingCountSP->getTime() << std::endl;
-    }
-    
+	static const double timeOrderOffsetIncrement = 0.00001;
+	
+    InteractionRoot::SP interactionRootSP;
+
     _currentTime += 1;
 
-	PingCounter2ATRCallback pc2ATRCb( *this );
-	putAdvanceTimeRequest(  _currentTime, pc2ATRCb );
+	double timeOrderOffset = 0;
+
+	while(  ( interactionRootSP = getNextInteraction() ) != 0  ) {
+		boost::shared_ptr< Ping > pingSP(   boost::static_pointer_cast< Ping >( interactionRootSP )  );
+		std::cout << "Sink2: Received Ping interaction #" << pingSP->get_Count() << std::endl;
+//		_pingCount.set_RunningCount( _pingCount.get_RunningCount() + 1 );
+//		_pingCount.updateAttributeValues( getRTI(), _currentTime + getLookAhead() + timeOrderOffset );
+		timeOrderOffset += timeOrderOffsetIncrement;
+    }
+    
+	Sink2ATRCallback sk2ATRCb( *this );
+	putAdvanceTimeRequest(  _currentTime, sk2ATRCb  );
+
 }
 
 int main( int argc, char *argv[] ) {
 
-	std::cout << "Statring PingCounter2";
-	PingCounter2 PingCounter2( argc, argv );
-	std::cout << "Created PingCounter2";
-	PingCounter2.initialize();
-	std::cout << "Initialized PingCounter2";
-	PingCounter2.run();
+	Sink2 Sink2( argc, argv );
+
+	Sink2.initialize();
+	Sink2.run();
+
 
 	return 0;
 }

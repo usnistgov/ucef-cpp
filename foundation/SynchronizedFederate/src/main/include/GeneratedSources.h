@@ -26,5 +26,7 @@
 #include "LowPrio.hpp"
 #include "SimEnd.hpp"
 #include "SimulationControl.hpp"
+#include "FederateResignInteraction.hpp"
+#include "FederateJoinInteraction.hpp"
 
 #endif /* GENERATEDSOURCES_H_ */
