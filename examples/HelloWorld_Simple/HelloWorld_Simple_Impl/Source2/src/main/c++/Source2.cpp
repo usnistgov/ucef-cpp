@@ -19,41 +19,56 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-#include "PingCounter2.hpp"
+#include "Source2.hpp"
 
-void PingCounter2::initialize( void ) {
+void Source2::initialize( void ) {
 
-	PingCounter2ATRCallback pc2ATRCb( *this );
-	putAdvanceTimeRequest(  _currentTime, pc2ATRCb );
 
-    //readyToPopulate();
-    //readyToRun();
+    // testing yogesh
+    //super.disableTimeRegulation();
+
+
+    Source2ATRCallback src2ATRCb( *this );
+    // _currentTime = getLBTS() - getLookAhead();
+    // disableTimeRegulation();
+
+    putAdvanceTimeRequest(  _currentTime, src2ATRCb );
+
+    // testing yogesh
+   readyToPopulate();
+   readyToRun();
+
 }
 
-void PingCounter2::execute( void ) {
-	SynchronizedFederate::ObjectReflector objectReflector;
-
-	while(  !( objectReflector = getNextObjectReflector() ).isNull()  ) {
-		objectReflector.reflect();
-		boost::shared_ptr< PingCount > pingCountSP(   boost::static_pointer_cast< PingCount >( objectReflector.getObjectRootSP() )  );
-		std::cout << "Message from PingCounter2:  " << pingCountSP->get_SinkName() << " has received " <<
-		 pingCountSP->get_RunningCount() << " \"Ping\" interactions at time " << pingCountSP->getTime() << std::endl;
-    }
+void Source2::execute( void ) {
+    PingSP pingSP = create_Ping();
+    pingSP->set_Count( -_ix );
+    
+    std::cout << "Source2: Sending Ping interaction #-" << _ix << std::endl;
+    pingSP->sendInteraction( getRTI(), _currentTime + getLookAhead() );
     
     _currentTime += 1;
+    //_currentTime += getStepSize()
 
-	PingCounter2ATRCallback pc2ATRCb( *this );
-	putAdvanceTimeRequest(  _currentTime, pc2ATRCb );
+    Source2ATRCallback src2ATRCb( *this );
+    putAdvanceTimeRequest(  _currentTime, src2ATRCb );
+    
+    ++_ix;
 }
+
 
 int main( int argc, char *argv[] ) {
 
-	std::cout << "Statring PingCounter2";
-	PingCounter2 PingCounter2( argc, argv );
-	std::cout << "Created PingCounter2";
-	PingCounter2.initialize();
-	std::cout << "Initialized PingCounter2";
-	PingCounter2.run();
+	std::cout << "Creating Source2 object" << std::endl;
+	Source2 Source2( argc, argv );
+	std::cout << "Source2 created" << std::endl;
+
+	std::cout << "Initializing Source2" << std::endl;
+	Source2.initialize();
+	std::cout << "Source2 initialized" << std::endl;
+
+	std::cout << "Running Source2" << std::endl;
+	Source2.run();
 
 	return 0;
 }

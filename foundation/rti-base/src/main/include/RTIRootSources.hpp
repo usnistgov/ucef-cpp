@@ -9,4 +9,7 @@
 #include "../SimResume.cpp"
 #include "../HighPrio.cpp"
 #include "../VeryLowPrio.cpp"
+#include "../FederateResignInteraction.cpp"
+#include "../FederateJoinInteraction.cpp"
+
 

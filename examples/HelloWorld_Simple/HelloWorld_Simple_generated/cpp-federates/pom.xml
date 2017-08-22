@@ -2,11 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.c2w.Helloworld_simple_cpp</groupId>
+    <groupId>org.cpswt.Helloworld_simple_cpp</groupId>
     <artifactId>HelloWorld_root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>org.c2w.Helloworld_simple_cpp</groupId>
+  <groupId>org.cpswt.Helloworld_simple_cpp</groupId>
   <artifactId>HelloWorld-cpp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
