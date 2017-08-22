@@ -19,30 +19,33 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-#ifndef _PINGCOUNTER_CLASS
-#define _PINGCOUNTER_CLASS
+#ifndef _SINK_CLASS
+#define _SINK_CLASS
 
-#include "PingCounter2Base.hpp"
+#include "Sink2Base.hpp"
 
-class PingCounter2 : public PingCounter2Base {
+class Sink2 : public Sink2Base {
 private:
-    static double LOOKAHEAD;
     double _currentTime;
+//	PingCount _pingCount;
     
 public:
-    typedef PingCounter2Base Super;
-	PingCounter2( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ) { }
+    typedef Sink2Base Super;
+	Sink2( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ) {
+//		_pingCount.set_SinkName( "Sink2" );
+//		_pingCount.set_RunningCount( 0 );
+	}
 
-	virtual ~PingCounter2( void )
+	virtual ~Sink2( void )
 	 throw (RTI::FederateInternalError) { }
 
-    class PingCounter2ATRCallback : public ATRCallback {
+    class Sink2ATRCallback : public ATRCallback {
     private:
-    	PingCounter2 &_PingCounter2;
+    	Sink2 &_Sink2;
     public:
-    	PingCounter2ATRCallback( PingCounter2 &PingCounter2 ) : _PingCounter2( PingCounter2 ) { }
-    	virtual void execute( void ) { _PingCounter2.execute(); }
-		virtual SP clone( void ) { return SP(  new PingCounter2ATRCallback( *this )  ); }
+    	Sink2ATRCallback( Sink2 &Sink2 ) : _Sink2( Sink2 ) { }
+    	virtual void execute( void ) { _Sink2.execute(); }
+		virtual SP clone( void ) { return SP(  new Sink2ATRCallback( *this )  ); }
     };
 
     void initialize( void );
