@@ -39,6 +39,9 @@
 #include "ObjectRoot.hpp"
 #include "SimEnd.hpp"
 
+#include "FederateResignInteraction.hpp"
+#include "FederateJoinInteraction.hpp"
+
 #include "FederateLogger.hpp"
 
 #ifndef C2W_FED_LOGGER_CLS
@@ -66,6 +69,11 @@ private:
 	std::string _federateId;
 	std::string _federationId;
 	std::string _lockFileName;
+
+	std::string _FederateId;
+	std::string _FederateType;
+	bool _IsLateJoiner;
+
 
 
 public:
@@ -99,7 +107,7 @@ private:
 protected:
 	static C2WLogger* _logger;
 
-	SynchronizedFederate( void ) : _federateId( "" ), _federationId( "" ), _timeConstrainedNotEnabled( true ), _timeRegulationNotEnabled( true ), _simEndNotSubscribed( true ), _currentTime( 0 ), _lookahead( 0 )
+	SynchronizedFederate( void ) : _federateId( "" ), _federationId( "" ), _timeConstrainedNotEnabled( true ), _timeRegulationNotEnabled( true ), _simEndNotSubscribed( true ), _currentTime( 0 ), _lookahead( 0 ), _IsLateJoiner(false), _FederateType("")
 	{
 		  setpgid( 0, 0 );
 		  _lockFileName = getenv( "EXEDIR" );
@@ -129,6 +137,10 @@ protected:
 	std::string getFederationId( void ) const { return _federationId; }
 	std::string getFederationManagerName( void ) const { return SynchronizedFederate::FEDERATION_MANAGER_NAME; }
 
+	std::string getFederateType( void ) const { return _FederateType; }
+	bool get_IsLateJoiner( void ) const { return _IsLateJoiner; }
+
+
 	void enableTimeConstrained( void ) throw( RTI::FederateNotExecutionMember );
 	void enableTimeRegulation( double time, double lookahead )
 	 throw( RTI::InvalidFederationTime, RTI::InvalidLookahead, RTI::FederateNotExecutionMember );
@@ -137,6 +149,17 @@ protected:
 		enableTimeRegulation( 0, lookahead );
 	}
 
+	void disableTimeRegulation()
+	 throw( RTI::RTIinternalError, RTI::FederateNotExecutionMember );
+
+//	 TimeRegulationWasNotEnabled,
+//  ConcurrentAccessAttempted,
+//  FederateNotExecutionMember,
+//  SaveInProgress,
+ // RestoreInProgress,
+ // RTIinternalError
+
+	
 	void resignFederationExecution( RTI::ResignAction resignAction );
 	void resignFederationExecution( void ) {
 		resignFederationExecution( RTI::DELETE_OBJECTS_AND_RELEASE_ATTRIBUTES );

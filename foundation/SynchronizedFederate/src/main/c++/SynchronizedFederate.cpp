@@ -31,6 +31,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+#include <ctime>
+#include <cstdlib>
+#include <sstream>
+
 
 C2WLogger* SynchronizedFederate::_logger = &C2W_FED_LOGGER_CLS::get_singleton();
 
@@ -75,11 +79,32 @@ void SynchronizedFederate::createRTI( void ) {
 }
 
 void SynchronizedFederate::joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile ) {
+	std::stringstream temp;  //temp as in temporary
 
-    std::cout << "[" << federate_id << "] federate joining federation [" << federation_id << "] ... " << std::flush;
+   	std::cout << "[" << federate_id << "] federate joining federation [" << federation_id << "] ... " << std::flush;
 
-	_federateId = federate_id;
+	//_federateId = federate_id; (old)
 	_federationId = federation_id;
+	
+	_FederateType = federate_id;
+	
+    int random_variable = std::rand();
+
+	// _federateId =_FederateType + std::string(random_variable);
+
+	//_federateId = _FederateType + std::to_string(random_variable);
+	//_federateId = concat FederateType+GUID
+
+
+
+	temp<<_FederateType<<random_variable;
+	_federateId=temp.str();      //str is temp as string
+
+	_IsLateJoiner = false;
+
+	// federateType ==> federate_id(old) --> Source,Sink,PingCounter
+	// federateID => federateType+GUID
+
 	
 
 	bool federationNotPresent = true;
@@ -136,6 +161,29 @@ void SynchronizedFederate::joinFederation( const std::string &federation_id, con
 #endif
 
 	std::cout << "done." << std::endl;
+
+	// Federate state interaction pubsub
+	FederateJoinInteraction::publish( getRTI() );
+	FederateResignInteraction::publish( getRTI() );
+
+
+	FederateJoinInteraction::SP intJoin = FederateJoinInteraction::create();
+            // joinInteraction.set_sourceFed(this.federateId);
+            // joinInteraction.set_originFed(this.federateId);
+            // joinInteraction.setFederateId(this.federateId);
+            // joinInteraction.setFederateType(this.federateType);
+            // joinInteraction.setLateJoiner(this.isLateJoiner);
+
+	intJoin->set_sourceFed( getFederateId() );
+	intJoin->set_originFed( getFederateId() );
+	intJoin->set_FederateType( getFederateType() );
+	intJoin->set_FederateId( getFederateId() );
+    intJoin->set_IsLateJoiner(get_IsLateJoiner());
+
+	
+    std::cout << "Sending Join interaction #-"  << std::endl;
+
+    intJoin->sendInteraction( getRTI(), _currentTime );
 
 }
 
@@ -220,6 +268,58 @@ void SynchronizedFederate::enableTimeRegulation( double time, double lookahead )
 	setLookahead( lookahead );
 }
 
+
+void SynchronizedFederate::disableTimeRegulation()
+throw( RTI::RTIinternalError, RTI::FederateNotExecutionMember ){
+
+	if ( _timeRegulationNotEnabled ) return;
+
+		bool timeRegulationDisabledNotCalled = true;
+		while( timeRegulationDisabledNotCalled ) {
+			try {
+				getRTI()->disableTimeRegulation();
+				_timeRegulationNotEnabled = true;
+				timeRegulationDisabledNotCalled = false;
+			} catch ( RTI::TimeRegulationWasNotEnabled & ) {
+				return;
+			} catch ( RTI::SaveInProgress & f) {
+				timeRegulationDisabledNotCalled = false;
+				//throw f;
+			} catch ( RTI::ConcurrentAccessAttempted & f) {
+				//throw f;
+				timeRegulationDisabledNotCalled = false;
+			} catch ( RTI::RestoreInProgress & f ) {
+				timeRegulationDisabledNotCalled = false;
+				//throw f;
+			} catch ( RTI::FederateNotExecutionMember &i ) {
+				throw i;
+			} catch ( RTI::RTIinternalError &i ) {
+				throw i;
+			} catch ( ... ) {
+	#ifdef _WIN32
+				Sleep( 500 );
+	#else
+				usleep( 500000 );
+	#endif
+			}
+		}
+
+		try { getRTI()->tick(); } catch( ... ) { }
+		while( !_timeRegulationNotEnabled ) {
+	#ifdef _WIN32
+				Sleep( 500 );
+	#else
+				usleep( 500000 );
+	#endif
+			try { getRTI()->tick(); } catch( ... ) { }
+		}
+
+	
+}
+
+
+
+
 void SynchronizedFederate::resignFederationExecution( RTI::ResignAction resignAction ) {
     bool federationNotResigned = true;
     int resignAttempts = 10;
@@ -254,6 +354,16 @@ void SynchronizedFederate::resignFederationExecution( RTI::ResignAction resignAc
 			}
         }
     }
+    
+	FederateResignInteraction::SP intResign = FederateResignInteraction::create();
+	intResign->set_sourceFed( getFederateId() );
+	intResign->set_originFed( getFederateId() );
+	intResign->set_FederateType( getFederateType() );
+	intResign->set_FederateId( getFederateId() );
+    intResign->set_IsLateJoiner(get_IsLateJoiner());
+
+	std::cout << "Sending Resign interaction #-"  << std::endl;
+    intResign->sendInteraction( getRTI(), _currentTime );
 }
 
 /**

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.c2w</groupId>
+    <groupId>org.cpswt</groupId>
     <artifactId>3rdPartyCpp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
