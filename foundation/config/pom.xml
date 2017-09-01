@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cpswt</groupId>
+    <artifactId>c2w-cpp-foundation</artifactId>
+    <version>0.6.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>CPSWTConfig</artifactId>
+  <name>CPSWT Federation Config Library</name>
+  <packaging>nar</packaging>
+
+  <dependencies>
+    <!--<dependency>
+        <groupId>org.cpswt</groupId>
+        <artifactId>core-cpp</artifactId>
+        <version>${c2w.version}</version>
+        <type>nar</type>
+    </dependency>-->
+  </dependencies>
+
+    <build>
+      <plugins>
+          <plugin>
+              <groupId>com.github.maven-nar</groupId>
+              <artifactId>nar-maven-plugin</artifactId>
+              <extensions>true</extensions>
+              <configuration>
+                    <cpp>
+                     <name>${compiler-name}</name>
+                        <debug>false</debug>
+                        <includes>
+                            <include>**/*.hpp</include>
+                            <include>**/*.h</include>
+                            <include>**/*.cpp</include>
+                            <include>**/*.c</include>
+                        </includes>
+                        <options combine.children="append">
+                            <option>-std=c++11</option>
+                            <option>-ftemplate-depth-128</option>
+                            <option>-fno-inline</option>
+                            <option>-Wall</option>
+                            <option>-pedantic</option>
+                            <option>-Wno-long-long</option>
+                            <option>-Wno-variadic-macros</option>
+                        </options>
+                    </cpp>
+              <linker>
+                <name>${linker-name}</name>
+                <incremental>false</incremental>
+                <libs combine.children="append">
+                    <lib>
+                    <name>boost_program_options</name>
+                    <type>shared</type>
+                    <directory>${build.BOOST_LIB_DIR}</directory>
+                    </lib>
+                </libs>
+            </linker>
+                <libraries>
+                    <library> 
+                        <type>shared</type>
+                    </library>
+                </libraries>
+            </configuration>
+          </plugin>
+      </plugins>
+  </build>
+
+</project>
