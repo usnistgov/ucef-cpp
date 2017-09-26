@@ -15,7 +15,7 @@
   <modules>
       <!--<module>PingCounter1</module>-->
       <module>Sink1</module>
-      <!--<module>Source1</module>-->
+      <module>Source1</module>
   </modules>
 
   <dependencies>
