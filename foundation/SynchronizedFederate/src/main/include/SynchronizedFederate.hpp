@@ -44,6 +44,9 @@
 
 #include "FederateLogger.hpp"
 
+#include "FederateConfig.h"
+
+
 #ifndef C2W_FED_LOGGER_CLS
 #define C2W_FED_LOGGER_CLS C2WConsoleLogger
 #endif 
@@ -107,16 +110,49 @@ private:
 protected:
 	static C2WLogger* _logger;
 
-	SynchronizedFederate( void ) : _federateId( "" ), _federationId( "" ), _timeConstrainedNotEnabled( true ), _timeRegulationNotEnabled( true ), _simEndNotSubscribed( true ), _currentTime( 0 ), _lookahead( 0 ), _IsLateJoiner(false), _FederateType("")
-	{
-		  setpgid( 0, 0 );
-		  _lockFileName = getenv( "EXEDIR" );
-		  if ( !_lockFileName.empty() ) {
-		      _lockFileName += "/";
-		  }
-		  _lockFileName += "__lock__";
+	// SynchronizedFederate( void ) : _federateId( "" ), _federationId( "" ), _timeConstrainedNotEnabled( true ), _timeRegulationNotEnabled( true ), _simEndNotSubscribed( true ), _currentTime( 0 ), _lookahead( 0 ), _IsLateJoiner(false), _FederateType("")
+	// {
+	// 	  setpgid( 0, 0 );
+	// 	  _lockFileName = getenv( "EXEDIR" );
+	// 	  if ( !_lockFileName.empty() ) {
+	// 	      _lockFileName += "/";
+	// 	  }
+	// 	  _lockFileName += "__lock__";
 
-		  _timeAdvanceMode = SF_TIME_ADVANCE_REQUEST;
+	// 	  _timeAdvanceMode = SF_TIME_ADVANCE_REQUEST;
+	// }
+
+
+
+	SynchronizedFederate( FederateConfig *fedconfig)
+	{
+		  
+		 this->_federationId = fedconfig->federationId;
+		  this->_timeConstrainedNotEnabled = true;
+		  this->_timeRegulationNotEnabled = true;
+		 this->_simEndNotSubscribed = true;
+		//   _currentTime = fedconfig->  
+		 this->_lookahead = fedconfig->lookAhead;
+		 this->_IsLateJoiner= fedconfig->isLateJoiner;
+		 this->_FederateType = fedconfig->federateType;
+		 this->_stepSize = fedconfig->stepSize;
+
+
+
+		std::stringstream temp;  //temp as in temporary
+    	int random_variable = std::rand();
+		temp<<fedconfig->federateType<<random_variable;
+		this->_federateId=temp.str();      //str is temp as string
+        setpgid( 0, 0 );
+		 
+		 
+		//   _lockFileName = getenv( "EXEDIR" );
+		//   if ( !_lockFileName.empty() ) {
+		//       _lockFileName += "/";
+		//   }
+		//   _lockFileName += "__lock__";
+
+		  this->_timeAdvanceMode = SF_TIME_ADVANCE_REQUEST;
 	}
 
 	virtual ~SynchronizedFederate()
@@ -131,7 +167,8 @@ protected:
 		_rti = 0;
 	}
 
-	void joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile = true );
+	// void joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile = true );
+	void joinFederation();
 	
 	std::string getFederateId( void ) const { return _federateId; }
 	std::string getFederationId( void ) const { return _federationId; }
@@ -219,7 +256,7 @@ private:
 		return atrQueue;
 	}
 
-	static const double _stepSize;
+	double _stepSize;
 
 	static void noMoreATRs( void ) { getMoreATRs() = false; }
 

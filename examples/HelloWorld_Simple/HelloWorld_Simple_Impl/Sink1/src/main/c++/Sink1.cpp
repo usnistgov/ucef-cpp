@@ -24,10 +24,24 @@
 void Sink1::initialize( void ) {
 
 	Sink1ATRCallback sk2ATRCb( *this );
-	putAdvanceTimeRequest(  _currentTime, sk2ATRCb  );
+	// putAdvanceTimeRequest(  _currentTime, sk2ATRCb  );
 
-    readyToPopulate();
-    readyToRun();
+    // readyToPopulate();
+    // readyToRun();
+
+_currentTime = 0;
+    
+    if (this->get_IsLateJoiner()) {
+        _currentTime = getLBTS() - getLookAhead();
+        disableTimeRegulation();
+    }
+
+    putAdvanceTimeRequest(  _currentTime, sk2ATRCb );
+
+    if(!this->get_IsLateJoiner()){
+        readyToPopulate();
+        readyToRun();
+    }
 
 //	_pingCount.registerObject( getRTI() );
 //	_pingCount.updateAttributeValues( getRTI(), _currentTime + getLookAhead() );
@@ -59,10 +73,15 @@ void Sink1::execute( void ) {
 
 int main( int argc, char *argv[] ) {
 
-	Sink1 Sink1( argc, argv );
+	// Sink1 Sink1( argc, argv );
 
-	Sink1.initialize();
-	Sink1.run();
+    FederateConfigParser *parse_obj = new FederateConfigParser();
+    FederateConfig *fedconfigObj = parse_obj->parseArgs(argc, argv);
+    Sink1 sink1(fedconfigObj);
+  
+
+	sink1.initialize();
+	sink1.run();
 
 
 	return 0;

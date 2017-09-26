@@ -37,7 +37,7 @@
                             <include>**/*.c</include>
                         </includes>
                         <options combine.children="append">
-                            <option>-std=c++11</option>
+                            <!--<option>-std=c++11</option>-->
                             <option>-ftemplate-depth-128</option>
                             <option>-fno-inline</option>
                             <option>-Wall</option>

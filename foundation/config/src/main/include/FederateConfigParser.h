@@ -1,6 +1,8 @@
 //
 // Created by yogesh on 8/31/17.
 //
+#ifndef  __FederateConfigParser__
+#define __FederateConfigParser__
 
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -20,5 +22,5 @@ public:
     ~FederateConfigParser();
 
 };
-
+#endif
 

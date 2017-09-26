@@ -45,7 +45,7 @@ const std::string SynchronizedFederate::ReadyToRunSynch( "readyToRun" );
 const std::string SynchronizedFederate::ReadyToResignSynch( "readyToResign" );
 
 
-const double SynchronizedFederate::_stepSize = 0.2;
+// const double SynchronizedFederate::_stepSize = 0.2;
 
 void SynchronizedFederate::createRTI( void ) {
 
@@ -78,17 +78,19 @@ void SynchronizedFederate::createRTI( void ) {
 
 }
 
-void SynchronizedFederate::joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile ) {
-	std::stringstream temp;  //temp as in temporary
+// void SynchronizedFederate::joinFederation( const std::string &federation_id, const std::string &federate_id, bool ignoreLockFile ) {
+void SynchronizedFederate::joinFederation() {
+	// std::stringstream temp;  //temp as in temporary
 
-   	std::cout << "[" << federate_id << "] federate joining federation [" << federation_id << "] ... " << std::flush;
+   	// std::cout << "[" << federate_id << "] federate joining federation [" << federation_id << "] ... " << std::flush;
+	   std::cout << " federate joining federation ...." <<std::flush;
 
 	//_federateId = federate_id; (old)
-	_federationId = federation_id;
+	// _federationId = federation_id;
 	
-	_FederateType = federate_id;
+	// _FederateType = federate_id;
 	
-    int random_variable = std::rand();
+    // int random_variable = std::rand();
 
 	// _federateId =_FederateType + std::string(random_variable);
 
@@ -97,10 +99,10 @@ void SynchronizedFederate::joinFederation( const std::string &federation_id, con
 
 
 
-	temp<<_FederateType<<random_variable;
-	_federateId=temp.str();      //str is temp as string
+	// temp<<_FederateType<<random_variable;
+	// _federateId=temp.str();      //str is temp as string
 
-	_IsLateJoiner = false;
+	// _IsLateJoiner = false;
 
 	// federateType ==> federate_id(old) --> Source,Sink,PingCounter
 	// federateID => federateType+GUID
@@ -112,30 +114,30 @@ void SynchronizedFederate::joinFederation( const std::string &federation_id, con
 		try {
 
 
-		    if(!ignoreLockFile) {
-                int descriptor;
-                int counter = 0;
-                while(   (  descriptor = open( _lockFileName.c_str(), O_RDONLY | O_CREAT | O_EXCL, 0777 )  )  <  0   ) {
-                    if ( errno == EEXIST || errno == EBUSY ) {
-                        if ( counter++ >= 60 ) {
-                            std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": timeout after 60 seconds.  Exiting." << std::endl;
-                            exit(1);
-                        }
-                        std::cout << "Waiting for federation to be created.." << std::endl;
-                        usleep( 1000000 );
-                    } else {
-                        std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": " << sys_errlist[ errno ] << ".  Exiting." << std::endl;
-                        exit(1);
-                    }
-                }
-                close( descriptor );
-		    }
+		    // if(!ignoreLockFile) {
+            //     int descriptor;
+            //     int counter = 0;
+            //     while(   (  descriptor = open( _lockFileName.c_str(), O_RDONLY | O_CREAT | O_EXCL, 0777 )  )  <  0   ) {
+            //         if ( errno == EEXIST || errno == EBUSY ) {
+            //             if ( counter++ >= 60 ) {
+            //                 std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": timeout after 60 seconds.  Exiting." << std::endl;
+            //                 exit(1);
+            //             }
+            //             std::cout << "Waiting for federation to be created.." << std::endl;
+            //             usleep( 1000000 );
+            //         } else {
+            //             std::cerr << "ERROR: [" << federate_id << "] federate:  could not open lock file \"" << _lockFileName << "\": " << sys_errlist[ errno ] << ".  Exiting." << std::endl;
+            //             exit(1);
+            //         }
+            //     }
+            //     close( descriptor );
+		    // }
 
-		    getRTI()->joinFederationExecution( federate_id.c_str(), federation_id.c_str(), this );
+		    getRTI()->joinFederationExecution( this->_federateId.c_str(), this->_federationId.c_str(), this );
 
-		    if(!ignoreLockFile) {
-		        remove( _lockFileName.c_str() );
-		    }
+		    // if(!ignoreLockFile) {
+		    //     remove( _lockFileName.c_str() );
+		    // }
 
 			federationNotPresent = false;
 		} catch ( RTI::FederateAlreadyExecutionMember & ) {
