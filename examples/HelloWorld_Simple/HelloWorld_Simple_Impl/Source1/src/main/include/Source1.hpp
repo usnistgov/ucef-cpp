@@ -34,7 +34,7 @@ private:
 public:
     typedef Source1Base Super;
 	// Source1( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ), _ix( 0 ) { }
-    Source1(FederateConfig &fedconfigObj):_ix( 0 ) { }
+    Source1(FederateConfig *fedconfigObj): Super(fedconfigObj),_ix( 0 ) { }
 
 	virtual ~Source1( void )
 	 throw (RTI::FederateInternalError) { }

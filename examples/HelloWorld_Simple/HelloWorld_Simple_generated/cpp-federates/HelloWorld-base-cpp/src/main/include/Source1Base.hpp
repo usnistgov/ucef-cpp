@@ -112,7 +112,7 @@ protected:
 	
 public:	
 	// default constructor
-	Source1Base( void ) { }
+	//Source1Base( void ) { }
 	
 	// // constructor
 	// Source1Base( const std::string &federation_id, const std::string &federate_id ) { init( federation_id, federate_id ); }
@@ -120,8 +120,7 @@ public:
 	// // constructor	
 	// Source1Base( int argc, char *argv[] ) { init( argc, argv ); }
 	
-	Sink1Base(FederateConfig *fedconfig) { 
-			Super(*fedconfig);
+	Source1Base(FederateConfig *fedconfig): Super( fedconfig )  { 
 			init(); 
 		}
 	

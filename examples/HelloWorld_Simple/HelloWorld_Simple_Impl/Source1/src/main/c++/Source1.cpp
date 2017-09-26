@@ -26,14 +26,14 @@ void Source1::initialize( void ) {
     Source1ATRCallback src2ATRCb( *this );
     _currentTime = 0;
     
-    if (this->isLateJoiner()) {
-        _currentTime = super.getLBTS() - super.getLookAhead();
-        super.disableTimeRegulation();
+    if (this->get_IsLateJoiner()) {
+        _currentTime = getLBTS() - getLookAhead();
+        disableTimeRegulation();
     }
 
     putAdvanceTimeRequest(  _currentTime, src2ATRCb );
 
-    if(!this.isLateJoiner()){
+    if(!this->get_IsLateJoiner()){
         readyToPopulate();
         readyToRun();
     }
@@ -63,15 +63,16 @@ int main( int argc, char *argv[] ) {
 	
     FederateConfigParser *parse_obj = new FederateConfigParser();
     FederateConfig *fedconfigObj = parse_obj->parseArgs(argc, argv);
-    Source1 Source1(&fedconfigObj);
+    Source1 Source1(fedconfigObj);
     std::cout << "Source1 created" << std::endl;
     
 	std::cout << "Initializing Source1" << std::endl;
 	Source1.initialize();
 	std::cout << "Source1 initialized" << std::endl;
 
-	std::cout << "Running Source1" << std::endl;
 	Source1.run();
+    	std::cout << "Running Source1" << std::endl;
+
 
 	return 0;
 }

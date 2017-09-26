@@ -78,11 +78,16 @@ int main( int argc, char *argv[] ) {
     FederateConfigParser *parse_obj = new FederateConfigParser();
     FederateConfig *fedconfigObj = parse_obj->parseArgs(argc, argv);
     Sink1 sink1(fedconfigObj);
-  
+    std::cout << "Sink1 created" << std::endl;
+    
+	std::cout << "Initializing Sink1" << std::endl;
 
 	sink1.initialize();
-	sink1.run();
+    	std::cout << "Sink1 initialized" << std::endl;
 
+	
+	sink1.run();
+std::cout << "Running Sink11" << std::endl;
 
 	return 0;
 }
