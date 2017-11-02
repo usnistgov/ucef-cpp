@@ -34,23 +34,25 @@ private:
 	SubscribedInteractionFilter _subscribedInteractionFilter;
 
 protected:
-	void init( ArgVector argVector ) {
+	void init() {
 
 		createRTI();
-		joinFederation( argVector[ 0 ], argVector[ 1 ] );
+		joinFederation();
+
+		// joinFederation( argVector[ 0 ], argVector[ 1 ] );
 		
-		std::string loglevel="";
-		ArgVector loggerArgVector;
-		if ( argVector.size() == 3 ) {
-			loggerArgVector.push_back( argVector[ 2 ] );
-		} else if ( argVector.size() > 3 ) {
-			loggerArgVector.push_back( argVector[ 3 ] );
-		}
-		_logger->init(loggerArgVector);
+		// std::string loglevel="";
+		// ArgVector loggerArgVector;
+		// if ( argVector.size() == 3 ) {
+		// 	loggerArgVector.push_back( argVector[ 2 ] );
+		// } else if ( argVector.size() > 3 ) {
+		// 	loggerArgVector.push_back( argVector[ 3 ] );
+		// }
+		// _logger->init(loggerArgVector);
 		
-		if ( argVector.size() == 5 ) {
-			loglevel = argVector[ 4 ];
-		}
+		// if ( argVector.size() == 5 ) {
+		// 	loglevel = argVector[ 4 ];
+		// }
 			
 
 		enableTimeConstrained();
@@ -81,43 +83,46 @@ protected:
    
         
          // enable pubsub log
-         if( argVector.size() > 2 ){
+        //  if( argVector.size() > 2 ){
 			
 			
-			Ping1::enablePublishLog("Ping1", "Source1", "NORMAL", loglevel);  
-			
-			  
+		// 	Ping1::enablePublishLog("Ping1", "Source1", "NORMAL", loglevel);  
 			
 			  
 			
 			  
-		}
+			
+			  
+		// }
 
 	}
 
-	void init( int argc, char *argv[] ) {
-		ArgVector argVector;
-		for( int ix = 1 ; ix < argc ; ++ix ) argVector.push_back( argv[ ix ] );
-		init( argVector );
-	}
+	// void init( int argc, char *argv[] ) {
+	// 	ArgVector argVector;
+	// 	for( int ix = 1 ; ix < argc ; ++ix ) argVector.push_back( argv[ ix ] );
+	// 	init( argVector );
+	// }
 	
-	void init( const std::string &federation_id, const std::string &federate_id ) {
-		ArgVector argVector;
-		argVector.push_back( federation_id );
-		argVector.push_back( federate_id );
-		init( argVector );
-	}
+	// void init( const std::string &federation_id, const std::string &federate_id ) {
+	// 	ArgVector argVector;
+	// 	argVector.push_back( federation_id );
+	// 	argVector.push_back( federate_id );
+	// 	init( argVector );
+	// }
 	
 public:	
 	// default constructor
-	Source1Base( void ) { }
+	//Source1Base( void ) { }
 	
-	// constructor
-	Source1Base( const std::string &federation_id, const std::string &federate_id ) { init( federation_id, federate_id ); }
+	// // constructor
+	// Source1Base( const std::string &federation_id, const std::string &federate_id ) { init( federation_id, federate_id ); }
 
-	// constructor	
-	Source1Base( int argc, char *argv[] ) { init( argc, argv ); }
-
+	// // constructor	
+	// Source1Base( int argc, char *argv[] ) { init( argc, argv ); }
+	
+	Source1Base(FederateConfig *fedconfig): Super( fedconfig )  { 
+			init(); 
+		}
 	
 	
 	Ping1SP create_Ping1( void ) {

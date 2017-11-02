@@ -18,6 +18,12 @@
         <version>${c2w.version}</version>
         <type>nar</type>
     </dependency>
+    <dependency>
+        <groupId>org.cpswt</groupId>
+        <artifactId>CPSWTConfig</artifactId>
+        <version>${c2w.version}</version>
+        <type>nar</type>
+    </dependency>
   </dependencies>
 
     <build>

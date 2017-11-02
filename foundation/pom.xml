@@ -15,6 +15,8 @@
       <module>SynchronizedFederate</module> 
       <module>OmnetFederate</module>    
       <module>ExecutionAssembler</module> 
+      <module>config</module> 
+
     </modules>  
 
     <properties>
@@ -43,7 +45,7 @@
                             <include>**/*.c</include>
                         </includes>
                         <options combine.children="append">
-                            <!--option>-std=c++11</option-->
+                            <!--<option>-std=c++11</option>-->
                             <option>-ftemplate-depth-128</option>
                             <option>-fno-inline</option>
                             <option>-Wall</option>
@@ -81,6 +83,11 @@
                           </lib>
                           <lib>
                             <name>boost_system</name>
+                            <type>shared</type>
+                            <directory>${build.BOOST_LIB_DIR}</directory>
+                          </lib>
+                          <lib>
+                            <name>boost_program_options</name>
                             <type>shared</type>
                             <directory>${build.BOOST_LIB_DIR}</directory>
                           </lib>

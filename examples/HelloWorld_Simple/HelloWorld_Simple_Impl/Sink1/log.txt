@@ -1,0 +1,134 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building C++ Hello World example Sink1 implementation 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ HelloWorld-Sink1-cpp ---
+[INFO] Deleting /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-validate (default-nar-validate) @ HelloWorld-Sink1-cpp ---
+[INFO] Using AOL: amd64-Linux-gpp
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-download (default-nar-download) @ HelloWorld-Sink1-cpp ---
+[INFO] Getting Nar dependencies
+[INFO] Getting Nar dependencies
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-unpack (default-nar-unpack) @ HelloWorld-Sink1-cpp ---
+[INFO] Getting Nar dependencies
+[INFO] Unpacking 14 dependencies to /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-rti-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/libHelloWorld-rti-cpp-0.0.1-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-rti-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/libHelloWorld-rti-cpp-0.0.1-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/librti-base-cpp-0.6.0-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/librti-base-cpp-0.6.0-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/core-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/libcore-cpp-0.6.0-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/core-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/libcore-cpp-0.6.0-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/libHelloWorld-base-cpp-0.0.1-SNAPSHOT.a
+[INFO] + ranlib /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static/libHelloWorld-base-cpp-0.0.1-SNAPSHOT.a
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-gnu-configure (default-nar-gnu-configure) @ HelloWorld-Sink1-cpp ---
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-system-generate (default-nar-system-generate) @ HelloWorld-Sink1-cpp ---
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-vcproj (default-nar-vcproj) @ HelloWorld-Sink1-cpp ---
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ HelloWorld-Sink1-cpp ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/src/main/resources
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-resources (default-nar-resources) @ HelloWorld-Sink1-cpp ---
+[INFO] Copied 0 resources
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-gnu-resources (default-nar-gnu-resources) @ HelloWorld-Sink1-cpp ---
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ HelloWorld-Sink1-cpp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-javah (default-nar-javah) @ HelloWorld-Sink1-cpp ---
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-gnu-make (default-nar-gnu-make) @ HelloWorld-Sink1-cpp ---
+[INFO] 
+[INFO] --- nar-maven-plugin:3.3.0:nar-compile (default-nar-compile) @ HelloWorld-Sink1-cpp ---
+[INFO] Compiling 2 native files
+[INFO] 1 total files to be compiled.
+[INFO] 1 total files to be compiled.
+[INFO] Found 4 processors available
+[INFO] Found 4 processors available
+[INFO] Limited used processors to 1
+[INFO] Limited used processors to 1
+[INFO] 
+Starting Core 0 with 1 source files...
+[INFO] 
+Starting Core 0 with 1 source files...
+[ERROR] In file included from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:38:0,
+[ERROR]                  from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp:9,
+[ERROR]                  from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/src/main/include/Sink1.hpp:25,
+[ERROR]                  from c++/Sink1.cpp:22:
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-noarch/include/InteractionRoot.hpp: In member function ‘void InteractionRoot::setParameter(RTI::Handle, const string&)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-noarch/include/InteractionRoot.hpp:464:39: warning: conversion to ‘int’ from ‘RTI::Handle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]    if (  !setParameterAux( handle, val )  ) {
+[ERROR]                                        ^
+[ERROR] In file included from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:39:0,
+[ERROR]                  from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp:9,
+[ERROR]                  from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/src/main/include/Sink1.hpp:25,
+[ERROR]                  from c++/Sink1.cpp:22:
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-noarch/include/ObjectRoot.hpp: In member function ‘void ObjectRoot::setAttribute(RTI::Handle, const string&)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-noarch/include/ObjectRoot.hpp:654:39: warning: conversion to ‘int’ from ‘RTI::Handle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]    if (  !setAttributeAux( handle, val )  ) {
+[ERROR]                                        ^
+[ERROR] In file included from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp:9:0,
+[ERROR]                  from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/src/main/include/Sink1.hpp:25,
+[ERROR]                  from c++/Sink1.cpp:22:
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘virtual void SynchronizedFederate::receiveInteraction(RTI::InteractionClassHandle, const RTI::ParameterHandleValuePairSet&, const RTI::FedTime&, const char*, RTI::EventRetractionHandle)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:381:120: warning: conversion to ‘int’ from ‘RTI::InteractionClassHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]     InteractionRoot::SP interactionRootSP = InteractionRoot::create_interaction( theInteraction, theParameters, theTime );
+[ERROR]                                                                                                                         ^
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘virtual void SynchronizedFederate::receiveInteraction(RTI::InteractionClassHandle, const RTI::ParameterHandleValuePairSet&, const char*)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:399:111: warning: conversion to ‘int’ from ‘RTI::InteractionClassHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]     InteractionRoot::SP interactionRootSP = InteractionRoot::create_interaction( theInteraction, theParameters );
+[ERROR]                                                                                                                ^
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘void SynchronizedFederate::ObjectReflector::reflect() const’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:505:73: warning: conversion to ‘int’ from ‘RTI::ObjectHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]     if ( _time < 0 ) ObjectRoot::reflect( _objectHandle, *_theAttributes );
+[ERROR]                                                                          ^
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:506:69: warning: conversion to ‘int’ from ‘RTI::ObjectHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]     else  ObjectRoot::reflect( _objectHandle, *_theAttributes, _time );
+[ERROR]                                                                      ^
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘ObjectRoot::SP SynchronizedFederate::ObjectReflector::getObjectRootSP() const’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:509:88: warning: conversion to ‘int’ from ‘RTI::ObjectHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]    ObjectRoot::SP getObjectRootSP() const { return ObjectRoot::getObject( _objectHandle ); }
+[ERROR]                                                                                         ^
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘virtual void SynchronizedFederate::discoverObjectInstance(RTI::ObjectHandle, RTI::ObjectClassHandle, const char*)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:553:51: warning: conversion to ‘int’ from ‘RTI::ObjectClassHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]    ObjectRoot::discover( theObjectClass, theObject );
+[ERROR]                                                    ^
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:553:51: warning: conversion to ‘int’ from ‘RTI::ObjectHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘virtual void SynchronizedFederate::reflectAttributeValues(RTI::ObjectHandle, const RTI::AttributeHandleValuePairSet&, const char*)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:558:48: warning: conversion to ‘int’ from ‘RTI::ObjectHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]    addObjectReflector( theObject, theAttributes );
+[ERROR]                                                 ^
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp: In member function ‘virtual void SynchronizedFederate::reflectAttributeValues(RTI::ObjectHandle, const RTI::AttributeHandleValuePairSet&, const RTI::FedTime&, const char*, RTI::EventRetractionHandle)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-noarch/include/SynchronizedFederate.hpp:570:57: warning: conversion to ‘int’ from ‘RTI::ObjectHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]    addObjectReflector( theObject, theAttributes, theTime );
+[ERROR]                                                          ^
+[ERROR] In file included from /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/src/main/include/Sink1.hpp:25:0,
+[ERROR]                  from c++/Sink1.cpp:22:
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp: In member function ‘virtual void Sink1Base::receiveInteraction(RTI::InteractionClassHandle, const RTI::ParameterHandleValuePairSet&, const RTI::FedTime&, const char*, RTI::EventRetractionHandle)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp:143:120: warning: conversion to ‘int’ from ‘RTI::InteractionClassHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]     InteractionRoot::SP interactionRootSP = InteractionRoot::create_interaction( theInteraction, theParameters, theTime );
+[ERROR]                                                                                                                         ^
+[ERROR] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp: In member function ‘virtual void Sink1Base::receiveInteraction(RTI::InteractionClassHandle, const RTI::ParameterHandleValuePairSet&, const char*)’:
+[WARNING] /home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-noarch/include/Sink1Base.hpp:164:111: warning: conversion to ‘int’ from ‘RTI::InteractionClassHandle {aka long unsigned int}’ may alter its value [-Wconversion]
+[ERROR]     InteractionRoot::SP interactionRootSP = InteractionRoot::create_interaction( theInteraction, theParameters );
+[ERROR]                                                                                                                ^
+[INFO] Linking...
+[INFO] Linking...
+[INFO] Starting link {4.8 -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/CPSWTConfig-0.6.0-SNAPSHOT-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared -lCPSWTConfig-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-rti-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lHelloWorld-rti-cpp-0.0.1-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lrti-base-cpp-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared -lSynchronizedFederate-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/C2WConsoleLogger-0.6.0-SNAPSHOT-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared -lC2WConsoleLogger-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/core-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lcore-cpp-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lHelloWorld-base-cpp-0.0.1-SNAPSHOT -L/usr/local/portico/portico-2.1.0/lib/gcc4 -Bdynamic -lRTI-NG_64d -L/usr/local/portico/portico-2.1.0/lib/gcc4 -Bdynamic -lFedTime_64d -L/usr/lib/x86_64-linux-gnu -Bdynamic -lboost_thread -L/usr/lib/x86_64-linux-gnu -Bdynamic -lboost_system -L/usr/lib -Bdynamic -lmysqlcppconn -L/usr/local/portico/portico-2.1.0/jre/lib/amd64/server -Bdynamic -ljvm -fexceptions -lstdc++}
+[INFO] Starting link {4.8 -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/CPSWTConfig-0.6.0-SNAPSHOT-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared -lCPSWTConfig-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-rti-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lHelloWorld-rti-cpp-0.0.1-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/rti-base-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lrti-base-cpp-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/SynchronizedFederate-0.6.0-SNAPSHOT-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared -lSynchronizedFederate-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/C2WConsoleLogger-0.6.0-SNAPSHOT-amd64-Linux-gpp-shared/lib/amd64-Linux-gpp/shared -lC2WConsoleLogger-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/core-cpp-0.6.0-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lcore-cpp-0.6.0-SNAPSHOT -L/home/vagrant/siminttool/cpswt-cpp/examples/HelloWorld_Simple/HelloWorld_Simple_Impl/Sink1/target/nar/HelloWorld-base-cpp-0.0.1-SNAPSHOT-amd64-Linux-gpp-static/lib/amd64-Linux-gpp/static -lHelloWorld-base-cpp-0.0.1-SNAPSHOT -L/usr/local/portico/portico-2.1.0/lib/gcc4 -Bdynamic -lRTI-NG_64d -L/usr/local/portico/portico-2.1.0/lib/gcc4 -Bdynamic -lFedTime_64d -L/usr/lib/x86_64-linux-gnu -Bdynamic -lboost_thread -L/usr/lib/x86_64-linux-gnu -Bdynamic -lboost_system -L/usr/lib -Bdynamic -lmysqlcppconn -L/usr/local/portico/portico-2.1.0/jre/lib/amd64/server -Bdynamic -ljvm -fexceptions -lstdc++}
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.836 s
+[INFO] Finished at: 2017-09-26T18:25:11+00:00
+[INFO] Final Memory: 13M/224M
+[INFO] ------------------------------------------------------------------------
