@@ -24,6 +24,12 @@
         <version>${c2w.version}</version>
         <type>nar</type>
     </dependency>
+    <dependency>
+        <groupId>org.cpswt</groupId>
+        <artifactId>portico-hla13-cpp</artifactId>
+        <version>1.0.0</version>
+        <type>nar</type>
+    </dependency>
   </dependencies>
 
     <build>
