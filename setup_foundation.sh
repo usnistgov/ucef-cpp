@@ -45,6 +45,7 @@ cd ${CPP_FOUNDATION_DIR}
 
 # foundation/*
 traverse_dir "core"
+traverse_dir "config"
 traverse_dir "C2WMySQLLogger"
 traverse_dir "C2WConsoleLogger"
 traverse_dir "rti-base"
