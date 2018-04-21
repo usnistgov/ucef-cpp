@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ -z "$RTI_HOME" ]; then
-	export RTI_HOME=/usr/local/portico/portico-2.1.0
-fi
-
 mvn_install_deploy() {
 	echo "Maven install..."
 	mvn clean install -U
