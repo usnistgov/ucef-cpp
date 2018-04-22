@@ -3,9 +3,7 @@
 
 mvn_install_deploy() {
 	echo "Maven install..."
-	mvn clean install -U
-	echo "Deploying to Archiva..."
-	mvn deploy
+	mvn clean install deploy -U
 }
 
 traverse_dir(){
