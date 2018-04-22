@@ -21,15 +21,16 @@ echo "Compiling 3rd party libraries first"
 
 # 3rdparty
 cd ${THIRD_PARTY}
+mvn clean install deploy -fae -U
 
 # 3rdparty/portico-hla
-traverse_dir "portico-hla"
+#traverse_dir "portico-hla"
 
 # 3rdparty/mysql-connector
-traverse_dir "mysql-connector"
+#traverse_dir "mysql-connector"
 
 # 3rdparty
-mvn_install_deploy
+#mvn_install_deploy
 
 # .
 cd ${PROJECT_DIR}
@@ -37,19 +38,20 @@ cd ${PROJECT_DIR}
 # foundation
 echo "Entering foundation Directory: " ${CPP_FOUNDATION_DIR}
 cd ${CPP_FOUNDATION_DIR}
+mvn clean install deploy -fae -U
 
 # foundation/*
-traverse_dir "core"
-traverse_dir "C2WMySQLLogger"
-traverse_dir "C2WConsoleLogger"
-traverse_dir "config"
-traverse_dir "rti-base"
-traverse_dir "SynchronizedFederate"
-traverse_dir "OmnetFederate"
-traverse_dir "ExecutionAssembler"
+#traverse_dir "core"
+#traverse_dir "C2WMySQLLogger"
+#traverse_dir "C2WConsoleLogger"
+#traverse_dir "config"
+#traverse_dir "rti-base"
+#traverse_dir "SynchronizedFederate"
+#traverse_dir "OmnetFederate"
+#traverse_dir "ExecutionAssembler"
 
 # foundation/
-mvn_install_deploy
+#mvn_install_deploy
 
 echo "=================================================================================="
 echo "Completed the compilation, installation, deployment of the C2W foundation packages"
