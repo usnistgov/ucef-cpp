@@ -16,8 +16,11 @@ traverse_dir(){
 PROJECT_DIR=${PWD}
 CPP_FOUNDATION_DIR=${PROJECT_DIR}/foundation
 THIRD_PARTY=${PROJECT_DIR}/3rdparty
+source $HOME/.bashrc
 
 echo "Compiling 3rd party libraries first"
+echo "Home: $HOME"
+echo env | grep RTI
 
 # 3rdparty
 cd ${THIRD_PARTY}
