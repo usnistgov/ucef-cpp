@@ -26,8 +26,8 @@ void PingCounter2::initialize( void ) {
 	PingCounter2ATRCallback pc2ATRCb( *this );
 	putAdvanceTimeRequest(  _currentTime, pc2ATRCb );
 
-    readyToPopulate();
-    readyToRun();
+    //readyToPopulate();
+    //readyToRun();
 }
 
 void PingCounter2::execute( void ) {
@@ -49,11 +49,11 @@ void PingCounter2::execute( void ) {
 int main( int argc, char *argv[] ) {
 
 	std::cout << "Statring PingCounter2";
-	PingCounter2 pingCounter2( argc, argv );
+	PingCounter2 PingCounter2( argc, argv );
 	std::cout << "Created PingCounter2";
-	pingCounter2.initialize();
+	PingCounter2.initialize();
 	std::cout << "Initialized PingCounter2";
-	pingCounter2.run();
+	PingCounter2.run();
 
 	return 0;
 }

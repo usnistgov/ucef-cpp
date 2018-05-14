@@ -1,0 +1,17 @@
+{
+  "federateTypesAllowed": [
+    "Source1"
+  ],
+  "expectedFederates": [
+    {
+      "federateType": "Source1",
+      "count": 0
+    }
+  ],
+  "lateJoinerFederates": [
+    {
+      "federateType": "Source1",
+      "count": 1
+    }
+  ]
+}

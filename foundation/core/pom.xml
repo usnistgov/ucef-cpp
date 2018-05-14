@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.c2w</groupId>
+    <groupId>org.cpswt</groupId>
     <artifactId>c2w-cpp-foundation</artifactId>
-    <version>0.4.0-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>core-cpp</artifactId>

@@ -2,24 +2,25 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.c2w.Helloworld_simple_cpp</groupId>
+    <groupId>org.cpswt.Helloworld_simple_cpp</groupId>
     <artifactId>HelloWorld-cpp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>HelloWorld-impl-cpp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <name>C++ Hello World example implementation</name>
   <packaging>pom</packaging>
 
   <modules>
-      <!--<module>PingCounter2</module>-->
+      <!--<module>PingCounter1</module>-->
       <module>Sink1</module>
       <module>Source1</module>
   </modules>
 
   <dependencies>
     <dependency>
-        <groupId>org.c2w.Helloworld_simple_cpp</groupId>
+        <groupId>org.cpswt.Helloworld_simple_cpp</groupId>
         <artifactId>HelloWorld-base-cpp</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <type>nar</type>

@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.c2w</groupId>
+  <groupId>org.cpswt</groupId>
   <artifactId>c2w-cpp-foundation</artifactId>
-  <version>0.4.0-SNAPSHOT</version>
+  <version>0.6.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>C2 Windtunnel C++ Foundation</name>
   <description>Foundation packages and classes of C2 Windtunnel C++ RTI and Federates</description>
@@ -15,10 +15,12 @@
       <module>SynchronizedFederate</module> 
       <module>OmnetFederate</module>    
       <module>ExecutionAssembler</module> 
+      <module>config</module> 
+
     </modules>  
 
     <properties>
-        <c2w.version>0.4.0-SNAPSHOT</c2w.version>
+        <c2w.version>0.6.0-SNAPSHOT</c2w.version>
         <boost.version>1.57.0+nar.10</boost.version>
         <nar-plugin.version>3.3.0</nar-plugin.version>
         <compiler-name>g++</compiler-name>
@@ -43,7 +45,7 @@
                             <include>**/*.c</include>
                         </includes>
                         <options combine.children="append">
-                            <!--option>-std=c++11</option-->
+                            <!--<option>-std=c++11</option>-->
                             <option>-ftemplate-depth-128</option>
                             <option>-fno-inline</option>
                             <option>-Wall</option>
@@ -65,7 +67,7 @@
                         <incremental>false</incremental>
                         <libs combine.children="append">
                           <lib>
-                            <name>RTI-NG_64d</name>
+                            <name>RTI-NG_64</name>
                             <type>shared</type>
                             <directory>${build.RTI_LIB_DIR}</directory>
                           </lib>
@@ -81,6 +83,11 @@
                           </lib>
                           <lib>
                             <name>boost_system</name>
+                            <type>shared</type>
+                            <directory>${build.BOOST_LIB_DIR}</directory>
+                          </lib>
+                          <lib>
+                            <name>boost_program_options</name>
                             <type>shared</type>
                             <directory>${build.BOOST_LIB_DIR}</directory>
                           </lib>
@@ -101,7 +108,7 @@
                 </os>
             </activation>
             <properties>
-              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
+              <build.RTI_LIB_DIR>${env.RTI_HOME}</build.RTI_LIB_DIR>
               <build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>
               <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
               <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
@@ -133,8 +140,8 @@
                 </os>
             </activation>
             <properties>
-              <build.RTI_LIB_DIR>${env.RTI_HOME}/lib/gcc4</build.RTI_LIB_DIR>
-              <build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>
+              <build.RTI_LIB_DIR>${RTI_HOME}/lib/gcc4</build.RTI_LIB_DIR>
+              <build.RTI_INC_DIR>${RTI_HOME}/include/hla13</build.RTI_INC_DIR>
               <build.BOOST_INC_DIR>/usr/include/boost</build.BOOST_INC_DIR>
               <build.BOOST_LIB_DIR>/usr/lib/x86_64-linux-gnu</build.BOOST_LIB_DIR>
               <build.MYSQL_LIB_DIR>/usr/lib/</build.MYSQL_LIB_DIR>
@@ -165,8 +172,8 @@
                 </os>
             </activation>
             <properties>
-              <build.RTI_LIB_DIR>${env.RTI_LIB_DIR}</build.RTI_LIB_DIR>
-              <build.RTI_INC_DIR>${env.RTI_HOME}/include/hla13</build.RTI_INC_DIR>
+              <build.RTI_LIB_DIR>${RTI_HOME}</build.RTI_LIB_DIR>
+              <build.RTI_INC_DIR>${RTI_HOME}/include/hla13</build.RTI_INC_DIR>
               <build.BOOST_INC_DIR>${env.BOOST_INC_DIR}</build.BOOST_INC_DIR>
               <build.BOOST_LIB_DIR>${env.BOOST_LIB_DIR}</build.BOOST_LIB_DIR>
               <build.MYSQL_LIB_DIR>${env.MYSQL_LIB_DIR}</build.MYSQL_LIB_DIR>
