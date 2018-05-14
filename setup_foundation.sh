@@ -1,5 +1,4 @@
 #!/bin/bash
-
 PROJECT_DIR=${PWD}
 CPP_FOUNDATION_DIR=${PROJECT_DIR}/foundation
 THIRD_PARTY=${PROJECT_DIR}/3rdparty
