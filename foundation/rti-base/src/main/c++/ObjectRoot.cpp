@@ -394,6 +394,28 @@ void ObjectRoot::registerObject( RTI::RTIambassador *rti ) {
 
 }
 
+void ObjectRoot::registerObject( RTI::RTIambassador *rti, const std::string &name ) throw ( RTI::ObjectAlreadyRegistered ) {
+    while( !_isRegistered ) {
+        try {
+            _object_handle = rti->registerObjectInstance( getClassHandle(), name.c_str() );
+            _isRegistered = true;
+        } catch ( RTI::ObjectClassNotDefined & ) {
+            std::cerr << "ERROR:  InteractionRoot::registerObject:  Object Class Not Defined" << std::endl;
+            return;
+        } catch ( RTI::ObjectClassNotPublished & ) {
+            std::cerr << "ERROR:  InteractionRoot::registerObject:  Object Class Not Published" << std::endl;
+            return;
+        } catch ( RTI::FederateNotExecutionMember & ) {
+            std::cerr << "ERROR:  InteractionRoot::registerObject:  Federate Not Execution Member" << std::endl;
+            return;
+        } catch ( RTI::ObjectAlreadyRegistered & ) {
+            throw;
+        } catch ( ... ) {
+            std::cerr << "InteractionRoot::registerObject:  Exception caught ... retry" << std::endl;
+        }
+    }
+}
+
 void ObjectRoot::unregisterObject( RTI::RTIambassador *rti ) {
     
     while( _isRegistered ) {
