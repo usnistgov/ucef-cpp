@@ -663,12 +663,8 @@ protected:
 		return false;
 	}
 
-	virtual AttributeHandleValuePairSetSP createDatamemberHandleValuePairSet( RTI::ULong count, bool force ) {
-		return AttributeHandleValuePairSetSP(  RTI::AttributeSetFactory::create( count )  );
-	}
-
 	virtual AttributeHandleValuePairSetSP createDatamemberHandleValuePairSet( bool force ) {
-		return createDatamemberHandleValuePairSet( force );
+		return AttributeHandleValuePairSetSP(  RTI::AttributeSetFactory::create(0)  );
 	}
 
 private:

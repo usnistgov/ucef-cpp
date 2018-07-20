@@ -461,7 +461,7 @@ public:
 private:
 	bool setParameterAux( int datamemberHandle, const std::string &val ) {
 		const std::string &datamemberName = getParameterName(datamemberHandle);
-		if (datamemberName.empty) {
+		if (datamemberName.empty()) {
 			return false;
 		}
 		return setParameterAux(datamemberName, val);
@@ -480,7 +480,7 @@ protected:
 		const StringVector &parameterNames = getAllParameterNames();
 		StringVector::size_type numberOfParameters = parameterNames.size();
 
-		ParameterHandleValuePairSetSP datamembers = RTI::ParameterSetFactory::create(numberOfParameters);
+		ParameterHandleValuePairSetSP datamembers = ParameterHandleValuePairSetSP(RTI::ParameterSetFactory::create(numberOfParameters));
 		for (StringVector::size_type i; i < numberOfParameters; i++) {
 			std::string stringConversion = static_cast< std::string >( getParameter(parameterNames[i]) );
 			datamembers->add( getParameterHandle(parameterNames[i]), stringConversion.c_str(), stringConversion.size() );
