@@ -481,7 +481,7 @@ protected:
 		StringVector::size_type numberOfParameters = parameterNames.size();
 
 		ParameterHandleValuePairSetSP datamembers = ParameterHandleValuePairSetSP(RTI::ParameterSetFactory::create(numberOfParameters));
-		for (StringVector::size_type i; i < numberOfParameters; i++) {
+		for (StringVector::size_type i = 0; i < numberOfParameters; i++) {
 			std::string stringConversion = static_cast< std::string >( getParameter(parameterNames[i]) );
 			datamembers->add( getParameterHandle(parameterNames[i]), stringConversion.c_str(), stringConversion.size() );
 		}
