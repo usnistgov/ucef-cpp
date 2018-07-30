@@ -294,7 +294,7 @@ void InteractionRoot::sendInteraction( RTI::RTIambassador *rti, double time ) {
 	bool interactionNotSent = true;
 	while( interactionNotSent ) {
 		try {
-			ParameterHandleValuePairSetSP datamembers = createDatamemberHandleValuePairSet( 0 );
+			ParameterHandleValuePairSetSP datamembers = createDatamemberHandleValuePairSet();
 			rti->sendInteraction(  getClassHandle(), *datamembers, RTIfedTime( time ), 0  );
 			createLog( time, true );
 			interactionNotSent = false;
@@ -331,7 +331,7 @@ void InteractionRoot::sendInteraction( RTI::RTIambassador *rti ) {
 	bool interactionNotSent = true;
 	while( interactionNotSent ) {
 		try {
-			ParameterHandleValuePairSetSP datamembers = createDatamemberHandleValuePairSet( 0 );
+			ParameterHandleValuePairSetSP datamembers = createDatamemberHandleValuePairSet();
 			rti->sendInteraction(  getClassHandle(), *datamembers, 0  );
 			createLog( 0, true );
 		} catch ( RTI::InteractionClassNotDefined & ) {
