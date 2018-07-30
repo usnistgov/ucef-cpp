@@ -9,12 +9,12 @@ echo "RTI_HOME: $RTI_HOME"
 # 3rdparty
 echo "Compiling 3rd party libraries first"
 cd ${THIRD_PARTY}
-mvn clean install deploy -fae -U -B -X
+mvn clean install deploy -U -B
 
 # foundation
 echo "Entering foundation Directory: " ${CPP_FOUNDATION_DIR}
 cd ${CPP_FOUNDATION_DIR}
-mvn clean install deploy -fae -U -B -X
+mvn clean install deploy -U -B
 
 echo "=================================================================================="
 echo "Completed the compilation, installation, deployment of the C2W foundation packages"
