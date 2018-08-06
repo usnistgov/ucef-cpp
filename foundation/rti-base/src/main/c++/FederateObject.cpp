@@ -240,28 +240,24 @@ std::ostream &operator<<( std::ostream &os, const FederateObject &entity ) {
 
 FederateObject::AttributeHandleValuePairSetSP FederateObject::createDatamemberHandleValuePairSet( bool force ) {
 	AttributeHandleValuePairSetSP datamembers = AttributeHandleValuePairSetSP(RTI::AttributeSetFactory::create(3));
-
-	// searching the published attribute name vector is a very inefficient solution
-	// however, strings are more reliable than integer handles when dealing with inherited attributes
-	const StringVector &publishedNames = getPublishAttributeNameVector();
 	std::string stringConversion;
 	bool isPublished;
 
-	isPublished = (std::find(publishedNames.begin(), publishedNames.end(), "FederateHandle") != publishedNames.end());
+	isPublished = (m_publishedAttributeNames.find("FederateHandle") != m_publishedAttributeNames.end());
 	if (  isPublished && _FederateHandle.shouldBeUpdated( force )  ) {
 		stringConversion = static_cast< std::string >(  TypeMedley( get_FederateHandle() )  );
 		datamembers->add( get_FederateHandle_handle(), stringConversion.c_str(), stringConversion.size() );
 		_FederateHandle.setHasBeenUpdated();
 	}
 
-	isPublished = (std::find(publishedNames.begin(), publishedNames.end(), "FederateHost") != publishedNames.end());
+	isPublished = (m_publishedAttributeNames.find("FederateHost") != m_publishedAttributeNames.end());
 	if (  isPublished && _FederateHost.shouldBeUpdated( force )  ) {
 		stringConversion = static_cast< std::string >(  TypeMedley( get_FederateHost() )  );
 		datamembers->add( get_FederateHost_handle(), stringConversion.c_str(), stringConversion.size() );
 		_FederateHost.setHasBeenUpdated();
 	}
 
-	isPublished = (std::find(publishedNames.begin(), publishedNames.end(), "FederateType") != publishedNames.end());
+	isPublished = (m_publishedAttributeNames.find("FederateType") != m_publishedAttributeNames.end());
 	if (  isPublished && _FederateType.shouldBeUpdated( force )  ) {
 		stringConversion = static_cast< std::string >(  TypeMedley( get_FederateType() )  );
 		datamembers->add( get_FederateType_handle(), stringConversion.c_str(), stringConversion.size() );
@@ -270,3 +266,5 @@ FederateObject::AttributeHandleValuePairSetSP FederateObject::createDatamemberHa
 
 	return datamembers;
 }
+
+boost::unordered_set< std::string > FederateObject::m_publishedAttributeNames;

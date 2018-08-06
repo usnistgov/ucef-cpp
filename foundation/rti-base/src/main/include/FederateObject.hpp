@@ -58,6 +58,8 @@
 #include "ObjectRoot.hpp"
 #include "C2WException.hpp"
 
+#include <boost/unordered_set.hpp>
+
 class FederateObject : public ObjectRoot {
 public:
 	typedef ObjectRoot Super;
@@ -76,6 +78,8 @@ public:
 	static SP create( void ) { return SP( new FederateObject ); }
 
 private:
+	static boost::unordered_set< std::string > m_publishedAttributeNames;
+
 	static int &get_FederateHandle_handle_var( void ) {
 		static int FederateHandle_handle;
 		return FederateHandle_handle;
@@ -227,10 +231,12 @@ public:
 public:
 	static void publish_FederateHandle( void ) {
 		getPublishAttributeNameVector().push_back( "FederateHandle" );
+		m_publishedAttributeNames.emplace( "FederateHandle" );
 	}
 
 	static void unpublish_FederateHandle( void ) {
 		getPublishAttributeNameVector().erase( std::remove( getPublishAttributeNameVector().begin(), getPublishAttributeNameVector().end(), "FederateHandle" ), getPublishAttributeNameVector().end() );
+		m_publishedAttributeNames.erase( "FederateHandle" );
 	}
 
 	static void subscribe_FederateHandle( void ) {
@@ -243,10 +249,12 @@ public:
 
 	static void publish_FederateHost( void ) {
 		getPublishAttributeNameVector().push_back( "FederateHost" );
+		m_publishedAttributeNames.emplace( "FederateHost" );
 	}
 
 	static void unpublish_FederateHost( void ) {
 		getPublishAttributeNameVector().erase( std::remove( getPublishAttributeNameVector().begin(), getPublishAttributeNameVector().end(), "FederateHost" ), getPublishAttributeNameVector().end() );
+		m_publishedAttributeNames.erase( "FederateHost" );
 	}
 
 	static void subscribe_FederateHost( void ) {
@@ -259,10 +267,12 @@ public:
 
 	static void publish_FederateType( void ) {
 		getPublishAttributeNameVector().push_back( "FederateType" );
+		m_publishedAttributeNames.emplace( "FederateType" );
 	}
 
 	static void unpublish_FederateType( void ) {
 		getPublishAttributeNameVector().erase( std::remove( getPublishAttributeNameVector().begin(), getPublishAttributeNameVector().end(), "FederateType" ), getPublishAttributeNameVector().end() );
+		m_publishedAttributeNames.erase( "FederateType" );
 	}
 
 	static void subscribe_FederateType( void ) {
@@ -273,7 +283,7 @@ public:
 		getSubscribeAttributeNameVector().erase( std::remove( getSubscribeAttributeNameVector().begin(), getSubscribeAttributeNameVector().end(), "FederateType" ), getSubscribeAttributeNameVector().end() );
 	}
 
-private:
+protected:
 	Attribute< int, int > _FederateHandle;
 	Attribute< int, std::string > _FederateHost;
 	Attribute< int, std::string > _FederateType;
