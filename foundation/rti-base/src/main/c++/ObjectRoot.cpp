@@ -98,7 +98,7 @@ void ObjectRoot::publish( RTI::RTIambassador *rti ) {
 	getPublishedAttributeHandleSet_var().empty();
 	for( StringVector::iterator stsItr = getPublishAttributeNameVector().begin() ; stsItr != getPublishAttributeNameVector().end() ; (void)++stsItr ) {
 		try {
-			getPublishedAttributeHandleSet_var().add(  getDatamemberNameHandleMap().find( "ObjectRoot," + *stsItr )->second  );
+			getPublishedAttributeHandleSet_var().add(  getDatamemberNameHandleMap().find( "ObjectRoot." + *stsItr )->second  );
 		} catch ( ... ) {
 			std::cerr << getPublishErrorMessage() << "Could not publish \"" << *stsItr + "\" attribute." << std::endl;
 		}
@@ -163,7 +163,7 @@ void ObjectRoot::subscribe( RTI::RTIambassador *rti ) {
 	getSubscribedAttributeHandleSet_var().empty();
 	for(  StringVector::iterator sstItr = getSubscribeAttributeNameVector().begin() ; sstItr != getSubscribeAttributeNameVector().end() ; (void)++sstItr  ) {
 		try {
-			getSubscribedAttributeHandleSet_var().add(  getDatamemberNameHandleMap().find( "ObjectRoot," + *sstItr )->second  );
+			getSubscribedAttributeHandleSet_var().add(  getDatamemberNameHandleMap().find( "ObjectRoot." + *sstItr )->second  );
 		} catch ( ... ) {
 			std::cerr << getSubscribeErrorMessage() << "Could not subscribe to \"" << *sstItr << "\" attribute." << std::endl;
 		}
@@ -392,6 +392,28 @@ void ObjectRoot::registerObject( RTI::RTIambassador *rti ) {
         }
     }
 
+}
+
+void ObjectRoot::registerObject( RTI::RTIambassador *rti, const std::string &name ) throw ( RTI::ObjectAlreadyRegistered ) {
+    while( !_isRegistered ) {
+        try {
+            _object_handle = rti->registerObjectInstance( getClassHandle(), name.c_str() );
+            _isRegistered = true;
+        } catch ( RTI::ObjectClassNotDefined & ) {
+            std::cerr << "ERROR:  InteractionRoot::registerObject:  Object Class Not Defined" << std::endl;
+            return;
+        } catch ( RTI::ObjectClassNotPublished & ) {
+            std::cerr << "ERROR:  InteractionRoot::registerObject:  Object Class Not Published" << std::endl;
+            return;
+        } catch ( RTI::FederateNotExecutionMember & ) {
+            std::cerr << "ERROR:  InteractionRoot::registerObject:  Federate Not Execution Member" << std::endl;
+            return;
+        } catch ( RTI::ObjectAlreadyRegistered & ) {
+            throw;
+        } catch ( ... ) {
+            std::cerr << "InteractionRoot::registerObject:  Exception caught ... retry" << std::endl;
+        }
+    }
 }
 
 void ObjectRoot::unregisterObject( RTI::RTIambassador *rti ) {

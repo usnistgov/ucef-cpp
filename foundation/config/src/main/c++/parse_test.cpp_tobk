@@ -1,0 +1,14 @@
+//
+// Created by yogesh on 8/31/17.
+//
+#include "FederateConfigParser.h"
+#include "FederateConfig.h"
+
+int main(int argc, char *argv[])
+{
+
+    FederateConfigParser *parse_obj = new FederateConfigParser();
+    FederateConfig *fedconfigObj = parse_obj->parseArgs(argc, argv);
+
+    return 0;
+}

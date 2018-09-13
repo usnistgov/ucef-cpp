@@ -38,10 +38,10 @@ public:
 
     class PingCounter2ATRCallback : public ATRCallback {
     private:
-    	PingCounter2 &_pingCounter2;
+    	PingCounter2 &_PingCounter2;
     public:
-    	PingCounter2ATRCallback( PingCounter2 &pingCounter2 ) : _pingCounter2( pingCounter2 ) { }
-    	virtual void execute( void ) { _pingCounter2.execute(); }
+    	PingCounter2ATRCallback( PingCounter2 &PingCounter2 ) : _PingCounter2( PingCounter2 ) { }
+    	virtual void execute( void ) { _PingCounter2.execute(); }
 		virtual SP clone( void ) { return SP(  new PingCounter2ATRCallback( *this )  ); }
     };
 

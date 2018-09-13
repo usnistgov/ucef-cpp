@@ -19,10 +19,12 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-#ifndef _SINK_CLASS
-#define _SINK_CLASS
+#ifndef _SINK1_CLASS
+#define _SINK1_CLASS
 
 #include "Sink1Base.hpp"
+#include "FederateConfigParser.h"
+#include "FederateConfig.h"
 
 class Sink1 : public Sink1Base {
 private:
@@ -31,9 +33,12 @@ private:
     
 public:
     typedef Sink1Base Super;
-	Sink1( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ) {
-//		_pingCount.set_SinkName( "Sink1" );
-//		_pingCount.set_RunningCount( 0 );
+//     Sink1( int argc, char *argv[] ) : Super( argc, argv ), _currentTime( 0 ) {
+// //		_pingCount.set_SinkName( "Sink1" );
+// //		_pingCount.set_RunningCount( 0 );
+// 	}
+	Sink1(FederateConfig *fedconfigObj): Super(fedconfigObj) {
+       
 	}
 
 	virtual ~Sink1( void )
